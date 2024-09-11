@@ -1,11 +1,17 @@
 #### Clone the repository
 
 ```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
+git clone https://github.com/nikonov1101/nvim ~/.config/nvim
 ```
 
 #### Start Neovim
 
 ```shell
 nvim
+```
+
+#### Sync plugins
+
+```vimscript
+:Lazy sync 
 ```
