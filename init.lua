@@ -20,6 +20,7 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<C-o>", ":Telescope find_files<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope live_grep<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-/>", ":Telescope live_grep<cr>", opts)
 vim.api.nvim_set_keymap("n", "[[", ":lua vim.api.nvim_command('normal! <C-o>')<cr>", opts)
 vim.api.nvim_set_keymap(
   "n",
