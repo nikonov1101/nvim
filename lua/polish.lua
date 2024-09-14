@@ -15,6 +15,9 @@ vim.api.nvim_set_keymap("n", "<C-/>", ":Telescope live_grep<cr>", opts)
 vim.api.nvim_set_keymap("n", "<<", ":bp<cr>", opts)
 vim.api.nvim_set_keymap("n", ">>", ":bn<cr>", opts)
 
+vim.keymap.set({ "n", "v" }, "mm", "<cmd>BookmarksMark<cr>", { desc = "Mark current line into active BookmarkList." })
+vim.keymap.set({ "n", "v" }, "mo", "<cmd>BookmarksGoto<cr>", { desc = "Go to bookmark at current active BookmarkList" })
+
 -- [[ and ]] jumps back and forth over history
 vim.api.nvim_set_keymap("n", "[[", ":lua vim.api.nvim_command('normal! <C-o>')<cr>", opts)
 vim.api.nvim_set_keymap(
