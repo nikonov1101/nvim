@@ -41,9 +41,9 @@ ls.add_snippets("all", {
 
 ls.add_snippets("go", {
   s("pf", {
-    t "log.Printf(",
+    t 'log.Printf("',
     i(0),
-    t ")",
+    t '")',
   }),
 })
 
