@@ -45,6 +45,11 @@ ls.add_snippets("go", {
     i(0),
     t '")',
   }),
+  s("err", {
+    t "if err != nil {",
+    i(0, " panic(err)"),
+    t "}",
+  }),
 })
 
 return {
