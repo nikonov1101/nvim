@@ -50,6 +50,11 @@ ls.add_snippets("go", {
     i(0, " panic(err)"),
     t "}",
   }),
+  s("ew", {
+    t 'errors.Wrap(err, "',
+    i(0, "explain"),
+    t '")',
+  }),
 })
 
 return {
