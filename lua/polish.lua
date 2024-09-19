@@ -2,6 +2,9 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
+-- show references with Telescope, much better to see the context
+vim.lsp.handlers["textDocument/references"] = function(_, _, _) require("telescope.builtin").lsp_references() end
+
 -- custom keymaps
 local opts = { noremap = true, silent = true }
 -- search everything
