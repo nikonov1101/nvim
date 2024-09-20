@@ -20,6 +20,7 @@ return {
     },
     window = {
       mappings = {
+        ["n"] = "add",
         ["ga"] = "git_add_file",
         ["gr"] = "git_revert_file",
       },
