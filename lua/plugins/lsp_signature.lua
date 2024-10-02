@@ -1,16 +1,17 @@
 return {
   "ray-x/lsp_signature.nvim",
-  event = "VeryLazy",
 
   opts = {
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    floating_window_above_cur_line = false, -- Set this to false so the popup appears below the line.
-    floating_window_off_y = -2, -- Adjust the Y offset if needed to fine-tune its position.
-    floating_window = true, -- Use floating window instead of virtual text.
-
-    hint_enable = false, -- virtual hint enable
-    hint_prefix = "?? ", -- Panda for parameter
-    hint_inline = function() return false end,
+    bind = false, -- This is mandatory to disable auto-popup
+    floating_window = true, -- Show signature in a floating window
+    toggle_key_flip_floatwin_setting = true,
+    hint_enable = false, -- Disable virtual hint
+    toggle_key = "<C-k>", -- No toggle key binding
+    always_trigger = false,
+    doc_lines = 10, -- Show 2 lines of signature docs
+    handler_opts = {
+      border = "rounded", -- Optional: border for floating window
+    },
   },
   config = function(_, opts) require("lsp_signature").setup(opts) end,
 }
