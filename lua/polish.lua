@@ -5,6 +5,22 @@
 -- show references with Telescope, much better to see the context
 vim.lsp.handlers["textDocument/references"] = function(_, _, _) require("telescope.builtin").lsp_references() end
 
+-- tune up parameters to Go LSP
+require("lspconfig").gopls.setup {
+  single_file_support = true,
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      usePlaceholders = false,
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
+
 -- custom keymaps
 local opts = { noremap = true, silent = true }
 -- search everything
