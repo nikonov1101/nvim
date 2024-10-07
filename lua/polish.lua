@@ -41,6 +41,17 @@ vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 -- << and >> navigate buffers, works much better than [-b for me
 vim.api.nvim_set_keymap("n", "<<", ":bp<cr>", opts)
 vim.api.nvim_set_keymap("n", ">>", ":bn<cr>", opts)
+-- change into a blackhole register
+vim.api.nvim_set_keymap("n", "C", '"_ciw', opts)
+vim.api.nvim_set_keymap("n", 'c"', '"_ci"', opts)
+vim.api.nvim_set_keymap("n", "c(", '"_ci(', opts)
+vim.api.nvim_set_keymap("n", "c)", '"_ci)', opts)
+vim.api.nvim_set_keymap("n", "c{", '"_ci{', opts)
+vim.api.nvim_set_keymap("n", "c}", '"_ci}', opts)
+-- delete into a the blackhole register
+vim.api.nvim_set_keymap("n", "dd", '"_dd', opts)
+vim.api.nvim_set_keymap("n", "D", '"_diw', opts)
+vim.api.nvim_set_keymap("n", "x", '"_x', opts)
 
 vim.keymap.set({ "n", "v" }, "mm", "<cmd>BookmarksMark<cr>", { desc = "Mark current line into active BookmarkList." })
 vim.keymap.set({ "n", "v" }, "mo", "<cmd>BookmarksGoto<cr>", { desc = "Go to bookmark at current active BookmarkList" })
