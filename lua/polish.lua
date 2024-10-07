@@ -30,6 +30,14 @@ vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope live_grep<cr>", opts)
 -- duplicate as C-/ because C-_ seems broken on macOS
 vim.api.nvim_set_keymap("n", "<C-/>", ":Telescope live_grep<cr>", opts)
 
+-- go to implementation
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+-- return back Rename to LSP menu
+vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+-- make Ctrl+K works in both insert and normal modes
+-- same hotkey for insert mode: see `toggle_key` @ ./plugins/lsp_signature.lua
+vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+
 -- << and >> navigate buffers, works much better than [-b for me
 vim.api.nvim_set_keymap("n", "<<", ":bp<cr>", opts)
 vim.api.nvim_set_keymap("n", ">>", ":bn<cr>", opts)
