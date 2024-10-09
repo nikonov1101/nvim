@@ -59,6 +59,7 @@ vim.api.nvim_set_keymap("n", "c)", '"_ci)', with_opts())
 vim.api.nvim_set_keymap("n", "c{", '"_ci{', with_opts())
 vim.api.nvim_set_keymap("n", "c}", '"_ci}', with_opts())
 -- delete into a the blackhole register
+vim.api.nvim_set_keymap("n", "X", "dd", with_opts())
 vim.api.nvim_set_keymap("n", "dd", '"_dd', with_opts())
 vim.api.nvim_set_keymap("n", "D", '"_diw', with_opts())
 vim.api.nvim_set_keymap("n", "x", '"_x', with_opts())
