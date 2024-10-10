@@ -2,6 +2,18 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
+vim.opt.undofile = true
+vim.opt.scrolloff = 10
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+
 -- show references with Telescope, much better to see the context
 vim.lsp.handlers["textDocument/references"] = function(_, _, _) require("telescope.builtin").lsp_references() end
 vim.lsp.handlers["textDocument/implementation"] = function(_, _, _) require("telescope.builtin").lsp_implementations() end
@@ -47,6 +59,16 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, with_opts "Rename symbol")
 -- make Ctrl+K works in both insert and normal modes
 -- same hotkey for insert mode: see `toggle_key` @ ./plugins/lsp_signature.lua
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, with_opts())
+
+-- move visually selected lines with J and K, thanks ThePrimeagen
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- jump half-page up/down centers the cursor
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- also center the search results
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 -- << and >> navigate buffers, works much better than [-b for me
 vim.api.nvim_set_keymap("n", "<<", ":bp<cr>", with_opts "To to left buffer")
