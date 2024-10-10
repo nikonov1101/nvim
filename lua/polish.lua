@@ -46,11 +46,11 @@ end
 --- TODO: re-group that file in some meaningful way.
 
 -- search everything
-vim.api.nvim_set_keymap("n", "<C-o>", ":Telescope find_files<cr>", with_opts())
-vim.api.nvim_set_keymap("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<cr>", with_opts())
-vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope live_grep<cr>", with_opts())
+vim.keymap.set("n", "<C-o>", ":Telescope git_files<cr>", with_opts())
+vim.keymap.set("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<cr>", with_opts())
+vim.keymap.set("n", "<C-_>", ":Telescope live_grep<cr>", with_opts())
 -- duplicate as C-/ because C-_ seems broken on macOS
-vim.api.nvim_set_keymap("n", "<C-/>", ":Telescope live_grep<cr>", with_opts())
+vim.keymap.set("n", "<C-/>", ":Telescope live_grep<cr>", with_opts())
 
 -- go to implementation
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, with_opts())
@@ -71,30 +71,30 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- << and >> navigate buffers, works much better than [-b for me
-vim.api.nvim_set_keymap("n", "<<", ":bp<cr>", with_opts "To to left buffer")
-vim.api.nvim_set_keymap("n", ">>", ":bn<cr>", with_opts "To to right buffer")
+vim.keymap.set("n", "<<", ":bp<cr>", with_opts "To to left buffer")
+vim.keymap.set("n", ">>", ":bn<cr>", with_opts "To to right buffer")
 -- change into a blackhole register
-vim.api.nvim_set_keymap("n", "C", '"_ciw', with_opts())
-vim.api.nvim_set_keymap("n", 'c"', '"_ci"', with_opts())
-vim.api.nvim_set_keymap("n", "c(", '"_ci(', with_opts())
-vim.api.nvim_set_keymap("n", "c)", '"_ci)', with_opts())
-vim.api.nvim_set_keymap("n", "c{", '"_ci{', with_opts())
-vim.api.nvim_set_keymap("n", "c}", '"_ci}', with_opts())
+vim.keymap.set("n", "C", '"_ciw', with_opts())
+vim.keymap.set("n", 'c"', '"_ci"', with_opts())
+vim.keymap.set("n", "c(", '"_ci(', with_opts())
+vim.keymap.set("n", "c)", '"_ci)', with_opts())
+vim.keymap.set("n", "c{", '"_ci{', with_opts())
+vim.keymap.set("n", "c}", '"_ci}', with_opts())
 -- delete into a the blackhole register
-vim.api.nvim_set_keymap("n", "X", "dd", with_opts())
-vim.api.nvim_set_keymap("n", "dd", '"_dd', with_opts())
-vim.api.nvim_set_keymap("n", "D", '"_diw', with_opts())
-vim.api.nvim_set_keymap("n", "x", '"_x', with_opts())
+vim.keymap.set("n", "X", "dd", with_opts())
+vim.keymap.set("n", "dd", '"_dd', with_opts())
+vim.keymap.set("n", "D", '"_diw', with_opts())
+vim.keymap.set("n", "x", '"_x', with_opts())
 
-vim.api.nvim_set_keymap("n", "<leader>rr", ":!go run %<cr>", with_opts "go run this file")
-vim.api.nvim_set_keymap("n", "<leader>rt", ":TestNearest<cr>", with_opts "go test nearest test")
+vim.keymap.set("n", "<leader>rr", ":!go run %<cr>", with_opts "go run this file")
+vim.keymap.set("n", "<leader>rt", ":TestNearest<cr>", with_opts "go test nearest test")
 
 vim.keymap.set({ "n", "v" }, "mm", "<cmd>BookmarksMark<cr>", { desc = "Mark current line into active BookmarkList." })
 vim.keymap.set({ "n", "v" }, "mo", "<cmd>BookmarksGoto<cr>", { desc = "Go to bookmark at current active BookmarkList" })
 
 -- [[ and ]] jumps back and forth over history
-vim.api.nvim_set_keymap("n", "[[", ":lua vim.api.nvim_command('normal! <C-o>')<cr>", with_opts "Go backward in history")
-vim.api.nvim_set_keymap(
+vim.keymap.set("n", "[[", ":lua vim.api.nvim_command('normal! <C-o>')<cr>", with_opts "Go backward in history")
+vim.keymap.set(
   "n",
   "]]",
   -- lua interprets C-i in a weird way, so the line below remaps it.
