@@ -60,9 +60,6 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, with_opts "Rename symbol")
 -- same hotkey for insert mode: see `toggle_key` @ ./plugins/lsp_signature.lua
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, with_opts())
 
--- move visually selected lines with J and K, thanks ThePrimeagen
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- jump half-page up/down centers the cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
