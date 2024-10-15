@@ -87,7 +87,9 @@ vim.keymap.set("v", "d", '"_d', with_opts())
 vim.keymap.set("v", "x", "d", with_opts())
 
 vim.keymap.set("n", "<leader>rr", ":!go run %<cr>", with_opts "go run this file")
+vim.keymap.set("n", "<leader>rb", ":!go test -v -bench $(dirname %)<cr>", with_opts "go bench this file")
 vim.keymap.set("n", "<leader>rt", ":TestNearest<cr>", with_opts "go test nearest test")
+vim.keymap.set("n", "<leader>rT", ":TestFile<cr>", with_opts "go test nearest test")
 
 vim.keymap.set({ "n", "v" }, "mm", "<cmd>BookmarksMark<cr>", { desc = "Mark current line into active BookmarkList." })
 vim.keymap.set({ "n", "v" }, "mo", "<cmd>BookmarksGoto<cr>", { desc = "Go to bookmark at current active BookmarkList" })
