@@ -14,6 +14,9 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 
+-- disable clipboard integration
+vim.cmd "let g:clipboard = {}"
+
 -- show references with Telescope, much better to see the context
 vim.lsp.handlers["textDocument/references"] = function(_, _, _) require("telescope.builtin").lsp_references() end
 vim.lsp.handlers["textDocument/implementation"] = function(_, _, _) require("telescope.builtin").lsp_implementations() end
