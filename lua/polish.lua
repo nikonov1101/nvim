@@ -14,9 +14,6 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 
--- disable clipboard integration
-vim.cmd "let g:clipboard = {}"
-
 -- show references with Telescope, much better to see the context
 vim.lsp.handlers["textDocument/references"] = function(_, _, _) require("telescope.builtin").lsp_references() end
 vim.lsp.handlers["textDocument/implementation"] = function(_, _, _) require("telescope.builtin").lsp_implementations() end
@@ -73,21 +70,25 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- << and >> navigate buffers, works much better than [-b for me
 vim.keymap.set("n", "<<", ":bp<cr>", with_opts "To to left buffer")
 vim.keymap.set("n", ">>", ":bn<cr>", with_opts "To to right buffer")
+
+-- ALWAYS change and delete into blackhole register
+vim.keymap.set("n", "d", '"_d', with_opts())
+vim.keymap.set("n", "c", '"_c', with_opts())
+
 -- change into a blackhole register
 vim.keymap.set("n", "C", '"_ciw', with_opts())
 vim.keymap.set("n", 'c"', '"_ci"', with_opts())
 vim.keymap.set("n", "c(", '"_ci(', with_opts())
-vim.keymap.set("n", "c)", '"_ci)', with_opts())
 vim.keymap.set("n", "c{", '"_ci{', with_opts())
-vim.keymap.set("n", "c}", '"_ci}', with_opts())
--- delete into a the blackhole register
-vim.keymap.set("n", "dd", '"_dd', with_opts())
-vim.keymap.set("n", "D", '"_diw', with_opts())
-vim.keymap.set("n", "x", '"_x', with_opts())
-vim.keymap.set("n", "X", "dd", with_opts())
--- same as above for a visual mode
-vim.keymap.set("v", "d", '"_d', with_opts())
-vim.keymap.set("v", "x", "d", with_opts())
+vim.keymap.set("n", "c[", '"_ci[', with_opts())
+
+-- yank faster
+vim.keymap.set("n", "yw", "yiw", with_opts())
+vim.keymap.set("n", "y{", "yi{", with_opts())
+vim.keymap.set("n", "y(", "yi(", with_opts())
+vim.keymap.set("n", "y[", "yi[", with_opts())
+vim.keymap.set("n", 'y"', 'yi"', with_opts())
+vim.keymap.set("n", "y'", "yi'", with_opts())
 
 vim.keymap.set("n", "<leader>rr", ":!go run %<cr>", with_opts "go run this file")
 vim.keymap.set("n", "<leader>rb", ":!go test -v -bench $(dirname %)<cr>", with_opts "go bench this file")
