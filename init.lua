@@ -17,4 +17,5 @@ end
 
 require "lazy_setup"
 require "vimopts"
+require "gopls_conf"
 require "polish"

@@ -9,8 +9,6 @@ local function with_opts(s)
   return ta
 end
 
---- TODO: re-group that file in some meaningful way.
-
 -- search everything
 vim.keymap.set("n", "<C-o>", ":Telescope git_files<cr>", with_opts())
 vim.keymap.set("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<cr>", with_opts())
@@ -24,7 +22,8 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation, with_opts())
 vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, with_opts "Rename symbol")
 -- make Ctrl+K works in both insert and normal modes
 -- same hotkey for insert mode: see `toggle_key` @ ./plugins/lsp_signature.lua
-vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, with_opts())
+vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, with_opts())
+vim.keymap.set("n", "<SC-K>", vim.lsp.buf.signature_help, with_opts())
 
 -- jump half-page up/down centers the cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
