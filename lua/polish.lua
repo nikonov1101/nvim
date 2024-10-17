@@ -11,6 +11,7 @@ end
 
 -- search everything
 vim.keymap.set("n", "<C-o>", ":Telescope git_files<cr>", with_opts())
+vim.keymap.set("n", "<SC-O>", ":Telescope find_files<cr>", with_opts())
 vim.keymap.set("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<cr>", with_opts())
 vim.keymap.set("n", "<C-_>", ":Telescope live_grep<cr>", with_opts())
 -- duplicate as C-/ because C-_ seems broken on macOS
