@@ -1,6 +1,3 @@
-vim.lsp.handlers["textDocument/references"] = function(_, _, _) require("telescope.builtin").lsp_references() end
-vim.lsp.handlers["textDocument/implementation"] = function(_, _, _) require("telescope.builtin").lsp_implementations() end
-
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -177,11 +174,11 @@ return {
         })
 
         vim.diagnostic.config({
-            -- update_in_insert = true,
+            update_in_insert = true,
             float = {
                 focusable = false,
-                style = "minimal",
-                border = "rounded",
+                scope = "line", -- or "cursor" to show only hovered
+                border = "single",
                 source = "always",
                 header = "",
                 prefix = "",

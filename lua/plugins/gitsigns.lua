@@ -28,6 +28,13 @@ return {
                     end
                 end)
 
+                -- view with telescope, V for VCS
+                local tele = require("telescope.builtin")
+                map('n', '<leader>vl', tele.git_bcommits, { desc = "git log (buffer)" })
+                map('n', '<leader>vL', tele.git_commits, { desc = "git log (all)" })
+                map('n', '<leader>vb', tele.git_branches, { desc = "git branches" })
+                map('n', '<leader>vs', tele.git_status, { desc = "git status" })
+
                 -- Actions
                 map('n', '<leader>gs', gitsigns.stage_hunk, { desc = "stage hunk" })
                 map('n', '<leader>gr', gitsigns.reset_hunk, { desc = "reset hunk" })
