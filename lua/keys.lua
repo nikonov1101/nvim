@@ -29,6 +29,7 @@ vim.keymap.set("n", "dw", '"_diw', with_opts())
 -- change into a blackhole register
 vim.keymap.set("n", "C", '"_ciw', with_opts())
 vim.keymap.set("n", 'c"', '"_ci"', with_opts())
+vim.keymap.set("n", "c'", '"_ci\'', with_opts())
 vim.keymap.set("n", "c(", '"_ci(', with_opts())
 vim.keymap.set("n", "c{", '"_ci{', with_opts())
 vim.keymap.set("n", "c[", '"_ci[', with_opts())

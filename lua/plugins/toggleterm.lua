@@ -4,12 +4,16 @@ return {
     config = function()
         -- toggle hotkey
         vim.keymap.set("n", "<Leader>t", "<cmd>:ToggleTerm direction=float<cr>", {})
+        -- C-w is for window, t is for terminal, note 'i' at the end for INSERT mode
+        vim.keymap.set("n", "<C-w>t", "<cmd>:ToggleTerm direction=float<cr>i", {})
+
         function _G.set_terminal_keymaps()
             -- keybindings inside the terminal
             local opts = { buffer = 0 }
+            -- leave insert mode inside the terminal
             vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-            vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts)
-            vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w><C-w>]], opts)
+            -- use the same C-w t to jum back to the editor
+            vim.keymap.set('t', '<C-w>t', [[<C-\><C-n><C-w><C-w>]], opts)
         end
 
         -- if you only want these mappings for toggle term use term://*toggleterm#* instead
