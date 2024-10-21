@@ -24,13 +24,3 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 20
 vim.g.netrw_liststyle = 3
 vim.g.netrw_altv = 1
-
--- trying to use built-in folding
-vim.opt.foldmethod = "marker"
--- :h vim.treesitter.foldexpr()
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- ref: https://github.com/neovim/neovim/pull/20750
-vim.opt.foldtext = ""
-vim.opt.fillchars:append("fold: ")
--- Open all folds by default, zm is not available
-vim.opt.foldlevelstart = 99
