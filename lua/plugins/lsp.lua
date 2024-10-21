@@ -48,12 +48,12 @@ return {
                         single_file_support = true,
                         settings = {
                             gopls = {
-                                useplaceholders = false,
-                                completefunctioncalls = false,
-                                symbolscope = "all",
-                                symbolstyle = "dynamic",
-                                symbolmatcher = "fastfuzzy",
-                                importshortcut = "both",
+                                usePlaceholders = false,
+                                completeFunctionCalls = false,
+                                symbolScope = "all",
+                                symbolStyle = "dynamic",
+                                symbolMatcher = "fastfuzzy",
+                                importShortcut = "both",
                                 hoverKind = "FullDocumentation", -- or "SynopsisDocumentation", "SingleLine"
                                 completeUnimported = true,
                                 experimentalPostfixCompletions = true,
@@ -151,6 +151,8 @@ return {
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
+            preselect = cmp.PreselectMode.None,
+            formatting = { fields = { "kind", "abbr", "menu" }, },
             completion = {
                 -- auto-select the first option, expand by <CR>
                 -- Intellij-like behaviour.
@@ -158,7 +160,7 @@ return {
             },
             view = {
                 -- native vindows are compact and minimalistic
-                entries = { name = "custom" },
+                entries = { name = "native" },
             },
             snippet = {
                 expand = function(args)
@@ -173,11 +175,10 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                -- keep luasnip first
-                { name = 'luasnip' },                 -- For luasnip users.
-                { name = 'nvim_lsp_signature_help' }, -- function signatures
-                { name = 'nvim_lsp' },
-                { name = 'buffer' },
+                { name = 'luasnip',                 option = { show_autosnippets = true }, priority = 9999 },
+                { name = 'nvim_lsp_signature_help', priority = 3 }, -- function signatures
+                { name = 'nvim_lsp',                priority = 2 },
+                { name = 'buffer',                  priority = 1 },
             })
         })
 

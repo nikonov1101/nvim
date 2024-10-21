@@ -7,7 +7,7 @@ local function with_opts(s)
     return ta
 end
 
-vim.keymap.set("n", "<Leader>e", vim.cmd.Ex, with_opts("open Ex"))
+vim.keymap.set("n", "<Leader>e", vim.cmd.Vex, with_opts("open Ex"))
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 
 -- jump half-page up/down centers the cursor

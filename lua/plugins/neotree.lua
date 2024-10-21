@@ -46,15 +46,15 @@ return {
             },
             git_status = {
                 symbols = {
-                    added     = "",
+                    added     = "+",
                     modified  = "",
-                    deleted   = "", -- this can only be used in the git_status source
-                    renamed   = "", -- this can only be used in the git_status source
+                    deleted   = "",
+                    renamed   = "",
                     -- Status type
                     untracked = "",
                     ignored   = "",
                     unstaged  = "",
-                    staged    = "",
+                    staged    = "+",
                     conflict  = "",
                 },
             },
