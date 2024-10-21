@@ -1,12 +1,11 @@
--- local resession = require "resession"
---
-
 return {
     "stevearc/resession.nvim",
     lazy = false,
     priority = 42,
     config = function()
         local rs = require("resession")
+        local fidget = require("fidget")
+
         rs.setup({
             options = {
                 "binary",
@@ -43,6 +42,7 @@ return {
                 -- Only load the session if nvim was started with no args
                 if vim.fn.argc(-1) == 0 then
                     -- Save these to a different directory, so our manual sessions don't get polluted
+                    fidget.notify("session loaded")
                     rs.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = false })
                 end
             end,

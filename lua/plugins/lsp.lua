@@ -11,7 +11,6 @@ return {
         "hrsh7th/cmp-nvim-lsp-signature-help",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
-        "j-hui/fidget.nvim",
     },
 
     config = function()
@@ -30,7 +29,6 @@ return {
             cmp_autopairs.on_confirm_done()
         )
 
-        require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
