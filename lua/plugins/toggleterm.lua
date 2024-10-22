@@ -3,7 +3,7 @@ return {
     version = "*",
     config = function()
         -- toggle hotkey
-        vim.keymap.set("n", "<Leader>t", "<cmd>:ToggleTerm direction=float<cr>", {})
+        vim.keymap.set("n", "<Leader>t", "<cmd>:ToggleTerm direction=float<cr>i", {})
         -- C-w is for window, t is for terminal, note 'i' at the end for INSERT mode
         vim.keymap.set("n", "<C-w>t", "<cmd>:ToggleTerm direction=float<cr>i", {})
 
@@ -12,8 +12,8 @@ return {
             local opts = { buffer = 0 }
             -- leave insert mode inside the terminal
             vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-            -- use the same C-w t to jum back to the editor
-            vim.keymap.set('t', '<C-w>t', [[<C-\><C-n><C-w><C-w>]], opts)
+            -- double esc hides the terminal
+            vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><C-w><C-w>]], opts)
         end
 
         -- if you only want these mappings for toggle term use term://*toggleterm#* instead
