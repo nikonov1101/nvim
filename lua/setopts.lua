@@ -27,3 +27,5 @@ vim.g.netrw_altv = 1
 -- set window title to a current directory (aka project) name
 vim.opt.title = true
 vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+-- share single status live for each split
+vim.opt.laststatus = 3
