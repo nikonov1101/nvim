@@ -4,9 +4,23 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         local harpoon = require("harpoon")
-        -- REQUIRED
+        local notify = require("fidget")
+
+        -- notify with a number when file added
+        harpoon:extend({
+            ADD = function(ctx)
+                notify.notify("harpoon: #" .. ctx.idx .. " f: " .. ctx.item.value)
+            end
+        })
+
+        -- clear harpoon on exit
+        vim.api.nvim_create_autocmd("VimLeavePre", {
+            callback = function()
+                harpoon:list():clear()
+            end,
+        })
+
         harpoon:setup()
-        -- REQUIRED
 
         vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
         vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
