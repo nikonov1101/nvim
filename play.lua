@@ -11,3 +11,5 @@ function dump(o)
         return tostring(o)
     end
 end
+
+print(vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))

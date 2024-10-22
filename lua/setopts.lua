@@ -24,3 +24,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 20
 vim.g.netrw_liststyle = 3
 vim.g.netrw_altv = 1
+-- set window title to a current directory (aka project) name
+vim.opt.title = true
+vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
