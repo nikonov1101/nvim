@@ -1,7 +1,8 @@
 return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-        "nvim-lua/plenary.nvim"
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope-ui-select.nvim",
     },
     config = function()
         require('telescope').setup({
@@ -16,7 +17,14 @@ return {
                     height = 0.9,
                 },
             },
+            extensions = {
+                ["ui-select"] = {
+                    require("telescope.themes").get_dropdown {
+                        -- even more opts
+                    } }
+            }
         })
+        require("telescope").load_extension("ui-select")
 
         local builtin = require('telescope.builtin')
         vim.keymap.set("n", "<C-o>", builtin.git_files, {})

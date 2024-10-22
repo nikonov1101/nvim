@@ -1,5 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
     config = function()
         local gitsigns = require('gitsigns')
         gitsigns.setup({
@@ -32,7 +33,7 @@ return {
                 map('n', '<leader>vl', tele.git_bcommits, { desc = "git log (buffer)" })
                 map('n', '<leader>vL', tele.git_commits, { desc = "git log (all)" })
                 map('n', '<leader>vb', tele.git_branches, { desc = "git branches" })
-                map('n', '<leader>vs', tele.git_status, { desc = "git status" })
+                map('n', '<leader>vs', "<cmd>Neotree float git_status<cr>", { desc = "git status" })
 
                 -- Actions
                 map('n', '<leader>gs', gitsigns.stage_hunk, { desc = "stage hunk" })

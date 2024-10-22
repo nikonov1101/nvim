@@ -2,7 +2,7 @@
 -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/init.lua
 --
 local augroup = vim.api.nvim_create_augroup
-local ThePrimeagenGroup = augroup('ThePrimeagen', {})
+local the_autoformat_group = augroup('the_autoformat_group', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -19,20 +19,30 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({ "BufWritePre" }, {
-    group = ThePrimeagenGroup,
+autocmd("BufWritePre", {
+    group = the_autoformat_group,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
-autocmd({ "BufWritePre" }, {
-    group = ThePrimeagenGroup,
+autocmd("BufWritePre", {
+    group = the_autoformat_group,
     pattern = "*",
-    command = [[:lua vim.lsp.buf.format()]],
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+autocmd("BufWritePre", {
+    group = the_autoformat_group,
+    pattern = "*.go",
+    callback = function()
+        vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+        vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
+    end
 })
 
 -- rebuild or just define in keys.lua
 autocmd('LspAttach', {
-    group = ThePrimeagenGroup,
+    group = the_autoformat_group,
     callback = function(e)
         local tele = require("telescope.builtin")
         local opts = { buffer = e.buf }
