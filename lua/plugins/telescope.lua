@@ -12,7 +12,7 @@ return {
                 prompt_position = "top",
                 anchor = "CENTER",
                 layout_config = {
-                    width = 0.8,
+                    width = 0.9,
                     height = 0.9,
                 },
             },
@@ -20,7 +20,7 @@ return {
 
         local builtin = require('telescope.builtin')
         vim.keymap.set("n", "<C-o>", builtin.git_files, {})
-        vim.keymap.set("n", "<C-O>", builtin.find_files, {})
+        vim.keymap.set("n", "<C-S-O>", builtin.find_files, {})
         vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<C-_>", builtin.live_grep, {})
         -- duplicate as C-/ because C-_ seems broken on macOS
