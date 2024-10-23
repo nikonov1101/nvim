@@ -27,7 +27,12 @@ return {
         require("telescope").load_extension("ui-select")
 
         local builtin = require('telescope.builtin')
-        vim.keymap.set("n", "<C-o>", builtin.git_files, {})
+        vim.keymap.set("n", "<C-o>", function()
+            local ok, _ = pcall(builtin.git_files)
+            if not ok then
+                builtin.find_files()
+            end
+        end, {})
         vim.keymap.set("n", "<C-S-O>", builtin.find_files, {})
         vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<C-_>", builtin.live_grep, {})
