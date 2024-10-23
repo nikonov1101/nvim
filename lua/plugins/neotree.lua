@@ -80,10 +80,48 @@ return {
             position = "left",
             width = 34,
             mappings = {
+                ["<Space>"] = false,
+                ["<S-CR>"] = "system_open",
+                O = "system_open",
+                ["<left>"] = "parent_or_close",
+                ["<right>"] = "child_or_open",
                 ["n"] = "add",
                 ["ga"] = "git_add_file",
                 ["gr"] = "git_revert_file",
+                ["gu"] = "git_unstage_file",
+                ["gc"] = "git_commit",
             },
         },
+        commands = {
+            system_open = function(state)
+                (vim.ui.open)(state.tree:get_node():get_id())
+            end,
+
+            parent_or_close = function(state)
+                local node = state.tree:get_node()
+                if node:has_children() and node:is_expanded() then
+                    state.commands.toggle_node(state)
+                else
+                    require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+                end
+            end,
+
+            child_or_open = function(state)
+                local node = state.tree:get_node()
+                if node:has_children() then
+                    if not node:is_expanded() then -- if unexpanded, expand
+                        state.commands.toggle_node(state)
+                    else                           -- if expanded and has children, seleect the next child
+                        if node.type == "file" then
+                            state.commands.open(state)
+                        else
+                            require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+                        end
+                    end
+                else -- if has no children
+                    state.commands.open(state)
+                end
+            end,
+        }
     },
 }

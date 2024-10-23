@@ -9,6 +9,7 @@ end
 
 vim.keymap.set("n", "<Leader>e", vim.cmd.Vex, with_opts("open Ex"))
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
 
 -- jump half-page up/down centers the cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -22,12 +23,12 @@ vim.keymap.set("n", "<<", ":bp<cr>", with_opts "To to left buffer")
 vim.keymap.set("n", ">>", ":bn<cr>", with_opts "To to right buffer")
 
 -- ALWAYS change and delete into blackhole register
-vim.keymap.set("n", "d", '"_d', with_opts())
 vim.keymap.set("n", "c", '"_c', with_opts())
 vim.keymap.set("n", "dw", '"_diw', with_opts())
 
 -- change into a blackhole register
 vim.keymap.set("n", "C", '"_ciw', with_opts())
+vim.keymap.set("n", "cw", '"_ciw', with_opts())
 vim.keymap.set("n", 'c"', '"_ci"', with_opts())
 vim.keymap.set("n", "c'", '"_ci\'', with_opts())
 vim.keymap.set("n", "c(", '"_ci(', with_opts())
