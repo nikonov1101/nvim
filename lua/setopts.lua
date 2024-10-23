@@ -13,19 +13,27 @@ vim.opt.wrap = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+-- Searching
+vim.opt.incsearch = true     -- search as characters are entered
+vim.opt.hlsearch = false     -- do not highlight matches
+vim.opt.ignorecase = true    -- ignore case in searches by default
+vim.opt.smartcase = true     -- but make it case sensitive if an uppercase is entered
 
-vim.opt.termguicolors = true
--- vim.opt.guicursor = ""
+vim.opt.termguicolors = true -- enabl 24-bit RGB color in the TUI
 
 vim.g.netrw_browse_split = 4
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 20
 vim.g.netrw_liststyle = 3
 vim.g.netrw_altv = 1
+
 -- set window title to a current directory (aka project) name
 vim.opt.title = true
 vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
 -- share single status live for each split
 vim.opt.laststatus = 3
+
+vim.opt.showmode = false  -- we are experienced, wo don't need the '-- INSERT --' mode hint
+vim.opt.splitbelow = true -- open new vertical split bottom
+vim.opt.splitright = true -- open new horizontal splits right
