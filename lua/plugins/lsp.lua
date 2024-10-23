@@ -176,9 +176,10 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = 'luasnip',                 option = { show_autosnippets = true }, priority = 9999 },
-                { name = 'nvim_lsp_signature_help', priority = 3 }, -- function signatures
-                { name = 'nvim_lsp',                priority = 2 },
-                { name = 'buffer',                  priority = 1 },
+                { name = 'nvim_lsp_signature_help', priority = 400 }, -- function signatures
+                { name = 'nvim_lsp',                priority = 300 },
+                { name = 'buffer',                  priority = 200 },
+                { name = 'path',                    priority = 100 },
             })
         })
 
