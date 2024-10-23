@@ -12,4 +12,12 @@ function dump(o)
     end
 end
 
-print(vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+-- todo: do we need a "tools" package?
+local function tablelength(T)
+    local count = 0
+    for _ in pairs(T) do count = count + 1 end
+    return count
+end
+
+-- print(vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+-- print(vim.fn.stdpath("data"))
