@@ -33,16 +33,15 @@ return {
                 builtin.find_files()
             end
         end, {})
-        vim.keymap.set("n", "<C-S-O>", builtin.find_files, {})
         vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<C-_>", builtin.live_grep, {})
         -- duplicate as C-/ because C-_ seems broken on macOS
         vim.keymap.set("n", "<C-/>", builtin.live_grep, {})
 
+        vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Find files" })
         vim.keymap.set('n', '<leader>fc', function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })
         end, { desc = "find word under cursor" })
-        vim.keymap.set('n', '<leader>ft', builtin.help_tags, {})
     end
 }
