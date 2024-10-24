@@ -1,3 +1,6 @@
+local M = {}
+
+-- TODO: probably move to utils
 local function tablelength(T)
     local count = 0
     for _ in pairs(T) do count = count + 1 end
@@ -22,7 +25,7 @@ end
 
 local default_dir = "/Users/alex/src/go-playground"
 
-function create_playground(playroot)
+function M.create_playground(playroot)
     local Path = require("plenary.path")
 
     local root_dir = playroot or default_dir
@@ -36,8 +39,10 @@ function create_playground(playroot)
     return main_go:absolute()
 end
 
-function last_playground(playroot)
+function M.last_playground(playroot)
     local root_dir = playroot or default_dir
     local num = last_playground_num(root_dir)
     return root_dir .. string.format("/play-%04d/main.go", num)
 end
+
+return M
