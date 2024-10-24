@@ -40,7 +40,6 @@ autocmd("BufWritePre", {
     end
 })
 
--- rebuild or just define in keys.lua
 autocmd('LspAttach', {
     group = the_autoformat_group,
     callback = function(e)

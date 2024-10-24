@@ -10,9 +10,9 @@ return {
                 sorting_strategy = "ascending",
                 results_title = false,
                 layout_strategy = "horizontal",
-                prompt_position = "top",
                 anchor = "CENTER",
                 layout_config = {
+                    prompt_position = "top",
                     width = 0.9,
                     height = 0.9,
                 },

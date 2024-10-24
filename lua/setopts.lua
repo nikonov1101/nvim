@@ -33,7 +33,17 @@ vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 
 -- share single status live for each split
 vim.opt.laststatus = 3
+-- statusline to show buffer number before the file name
+-- statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
-vim.opt.showmode = false  -- we are experienced, wo don't need the '-- INSERT --' mode hint
-vim.opt.splitbelow = true -- open new vertical split bottom
-vim.opt.splitright = true -- open new horizontal splits right
+vim.opt.showmode = false   -- we are experienced, wo don't need the '-- INSERT --' mode hint
+vim.opt.splitbelow = true  -- open new vertical split bottom
+vim.opt.splitright = true  -- open new horizontal splits right
+
+vim.opt.confirm = true     -- confirm write instead of error
+vim.opt.visualbell = false -- no visual bell
+vim.opt.errorbells = false
+vim.opt.autowrite = true
+vim.opt.autowriteall = true -- auto-write changes on buffer changes, on exit, etc
+
+vim.opt.synmaxcol = 300     -- Text after this column is not highlighted

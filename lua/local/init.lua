@@ -1,6 +1,8 @@
 local play = require("local.play")
 local notify = require("fidget")
 
+require("local.line").setup()
+
 vim.keymap.set("n", "<Leader>P", function()
     local p = play.create_playground()
     notify.notify("go-play: created: " .. p)
