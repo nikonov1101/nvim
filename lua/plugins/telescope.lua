@@ -33,6 +33,7 @@ return {
                 builtin.find_files()
             end
         end, {})
+        vim.keymap.set("n", "<C-e>", builtin.buffers, {})
         vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<C-_>", builtin.live_grep, {})
         -- duplicate as C-/ because C-_ seems broken on macOS

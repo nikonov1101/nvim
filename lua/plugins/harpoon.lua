@@ -9,21 +9,15 @@ return {
         -- notify with a number when file added
         harpoon:extend({
             ADD = function(ctx)
-                notify.notify("harpoon: #" .. ctx.idx .. " f: " .. ctx.item.value)
-            end
-        })
-
-        -- clear harpoon on exit
-        vim.api.nvim_create_autocmd("VimLeavePre", {
-            callback = function()
-                harpoon:list():clear()
+                notify.notify("harpoon: " .. ctx.item.value .. " added.", nil,
+                    { group = "harpoon", annote = "key: " .. ctx.idx })
             end,
         })
 
         harpoon:setup()
 
         vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-        vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+        vim.keymap.set("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
         vim.keymap.set("n", "<Leader>1", function() harpoon:list():select(1) end)
         vim.keymap.set("n", "<Leader>2", function() harpoon:list():select(2) end)

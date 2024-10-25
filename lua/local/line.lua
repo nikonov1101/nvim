@@ -3,7 +3,7 @@ local M = {}
 local function git_branch()
     local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
     if string.len(branch) > 0 then
-        return " " .. branch
+        return branch
     else
         return ""
     end
@@ -37,30 +37,35 @@ end
 
 local function status_line()
     -- todo: do not define colors and spaces here, use colorize()
-    local bufferNumber = "%0*#%n%*"
-    local fileFullPath = "%4* %<%f%*"
-    local modifiedFlag = " %1*%m%*"
-    local readonlyFlag = " %1*%r%*"
-    local currentLine  = "%2*%5l%*"
-    local totalLines   = "%2*/%L%* %p%%"
+    local bufferNumber = "#%n "
+    local gitBranch    = git_branch() .. " "
+    local workdir      = work_dir() .. " :: "
+    local fileFullPath = "%<%f "
+    local modifiedFlag = "%m "
+    local readonlyFlag = "%r "
+    local lineInfo     = "%5l/%L%* %p%%"
 
     local aligner      = "%="
 
-    return string.format("%s%s%s%s%s%s%s%s%s",
-        bufferNumber,
-        colorize(git_branch(), 2),
-        colorize(" " .. work_dir() .. " ::", 4),
-        fileFullPath,
-        modifiedFlag,
-        readonlyFlag,
+    return string.format("%s%s%s%s%s%s%s%s",
+        colorize(bufferNumber, 0),
+        colorize(gitBranch, 2),
+        colorize(workdir, 4),
+        colorize(fileFullPath, 4),
+        colorize(modifiedFlag, 1),
+        colorize(readonlyFlag, 1),
         aligner,
-        currentLine,
-        totalLines
+        colorize(lineInfo, 2)
     )
 end
 
+vim.opt.statusline = status_line()
+
+local function update_status_line()
+end
+
 function M.setup()
-    vim.opt.statusline = status_line()
+    update_status_line()
 end
 
 return M

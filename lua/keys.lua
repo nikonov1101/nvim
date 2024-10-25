@@ -7,7 +7,8 @@ local function with_opts(s)
     return ta
 end
 
-vim.keymap.set("n", "<Leader>e", vim.cmd.Vex, with_opts("open Ex"))
+vim.keymap.set("n", "<Leader>Q", "<cmd>:wa<cr>:qa<cr>", with_opts("write all, exit"))
+
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
 
