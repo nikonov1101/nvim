@@ -1,5 +1,7 @@
 local M = {}
 
+local playground_dir = "/tmp/"
+
 -- TODO: probably move to utils
 local function tablelength(T)
     local count = 0
@@ -7,31 +9,27 @@ local function tablelength(T)
     return count
 end
 
-local function last_playground_num(root_dir)
+local function last_playground_num()
     local Path = require("plenary.path")
     local Scan = require("plenary.scandir")
 
     -- create playground dir if not exists
-    local root_path = Path:new(root_dir)
+    local root_path = Path:new(playground_dir)
     if not root_path:exists() then
         print("path does not exists, creating...")
         root_path:mkdir()
     end
 
     -- count existing playgrounds
-    local play_dirs = Scan.scan_dir(root_dir, { hidden = false, depth = 1, only_dirs = true })
+    local play_dirs = Scan.scan_dir(playground_dir, { hidden = false, depth = 1, only_dirs = true })
     return tablelength(play_dirs)
 end
 
-local default_dir = "/Users/alex/src/go-playground"
-
-function M.create_playground(playroot)
+function M.create_playground()
     local Path = require("plenary.path")
 
-    local root_dir = playroot or default_dir
-    local num = last_playground_num(root_dir)
-
-    local next_dir = root_dir .. string.format("/play-%04d", num + 1)
+    local num = last_playground_num()
+    local next_dir = playground_dir .. string.format("/play-%04d", num + 1)
 
     Path:new(next_dir):mkdir()
     local main_go = Path:new(next_dir .. "/main.go")
@@ -39,10 +37,14 @@ function M.create_playground(playroot)
     return main_go:absolute()
 end
 
-function M.last_playground(playroot)
-    local root_dir = playroot or default_dir
-    local num = last_playground_num(root_dir)
-    return root_dir .. string.format("/play-%04d/main.go", num)
+function M.last_playground()
+    local num = last_playground_num()
+    return playground_dir .. string.format("/play-%04d/main.go", num)
+end
+
+function M.setup(local_dir)
+    -- todo: check that dir exists
+    playground_dir = local_dir and local_dir or playground_dir
 end
 
 return M
