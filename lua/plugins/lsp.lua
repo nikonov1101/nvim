@@ -22,7 +22,6 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
 
-
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
         cmp.event:on(
             'confirm_done',
@@ -45,6 +44,7 @@ return {
                 ["gopls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.gopls.setup {
+                        capabilities = capabilities,
                         single_file_support = true,
                         settings = {
                             gopls = {
@@ -67,13 +67,14 @@ return {
                                     generate = true,
                                     upgrade_dependency = true,
                                 },
+                                semanticTokens = true,
                                 hints = {
                                     assignVariableTypes = true,
                                     compositeLiteralFields = true,
                                     compositeLiteralTypes = true,
                                     constantValues = true,
-                                    functionTypeParameters = false,
-                                    parameterNames = false,
+                                    functionTypeParameters = true,
+                                    parameterNames = true,
                                     rangeVariableTypes = true,
                                 },
                                 analyses = {

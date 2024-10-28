@@ -65,5 +65,19 @@ autocmd('LspAttach', {
         vim.lsp.handlers["textDocument/implementation"] = function(_, _, _)
             tele.lsp_implementations()
         end
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+            vim.lsp.handlers.hover, {
+                border = "single",
+                focus = false,
+                focusable = false,
+            }
+        )
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+            vim.lsp.handlers.signature_help, {
+                border = "single",
+                focus = false,
+                focusable = false,
+            }
+        )
     end
 })
