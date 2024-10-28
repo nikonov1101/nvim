@@ -34,15 +34,15 @@ end
 -- If the statusline is not updated when you want it (e.g., after setting
 -- a variable that's used in an expression), you can force an update by
 -- using `:redrawstatus`.
+-- // TODO(nikonov): use https://github.com/EdenEast/nightfox.nvim?tab=readme-ov-file#interactive to build better status line.
 
 local function status_line()
-    -- todo: do not define colors and spaces here, use colorize()
-    local bufferNumber  = "#%n"
+    -- local bufferNumber  = "#%n"
     local gitBranch     = git_branch()
     local workdir       = work_dir()
-    local fileFullPath  = "%<%f "
-    local modifiedFlag  = "%m "
-    local readonlyFlag  = "%r "
+    local fileFullPath  = "%<%f"
+    local modifiedFlag  = " %m"
+    local readonlyFlag  = " %r"
     local lineInfo      = "%5l/%L%* %p%%"
 
     local aligner       = "%="
@@ -50,15 +50,15 @@ local function status_line()
 
     return string.format("%s%s%s%s%s%s%s%s%s%s%s",
         " ",
-        colorize(gitBranch, 2),
+        colorize(gitBranch, 0),
         leftSeparator,
-        colorize(workdir, 4),
+        colorize(workdir, 0),
         leftSeparator,
-        colorize(fileFullPath, 4),
-        colorize(modifiedFlag, 1),
-        colorize(readonlyFlag, 1),
+        colorize(fileFullPath, 0),
+        colorize(modifiedFlag, 0),
+        colorize(readonlyFlag, 0),
         aligner,
-        colorize(lineInfo, 2),
+        colorize(lineInfo, 0),
         " "
     )
 end
