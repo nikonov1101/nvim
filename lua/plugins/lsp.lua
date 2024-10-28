@@ -153,7 +153,9 @@ return {
 
         cmp.setup({
             preselect = cmp.PreselectMode.None,
-            formatting = { fields = { "kind", "abbr", "menu" }, },
+            formatting = {
+                fields = { "kind", "abbr" },
+            },
             completion = {
                 -- auto-select the first option, expand by <CR>
                 -- Intellij-like behaviour.
@@ -161,7 +163,7 @@ return {
             },
             view = {
                 -- native vindows are compact and minimalistic
-                entries = { name = "native" },
+                entries = { name = "custom" },
             },
             snippet = {
                 expand = function(args)
@@ -172,16 +174,21 @@ return {
                 ["<CR>"] = cmp.mapping.confirm { select = true },
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                { name = 'luasnip',                 option = { show_autosnippets = true }, priority = 9999 },
+                { name = 'luasnip',                 priority = 9999, option = { show_autosnippets = true } },
                 { name = 'nvim_lsp_signature_help', priority = 400 }, -- function signatures
                 { name = 'nvim_lsp',                priority = 300 },
                 { name = 'buffer',                  priority = 200 },
                 { name = 'path',                    priority = 100 },
-            })
+            }),
+            enable = function()
+                -- disable completion in comments
+                local context = require 'cmp.config.context'
+                return not context.in_treesitter_capture("comment")
+                    and not context.in_syntax_group("Comment")
+                    and not context.in_syntax_group("TSComment")
+            end,
         })
 
         vim.diagnostic.config({
