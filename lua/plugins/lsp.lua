@@ -154,7 +154,7 @@ return {
         cmp.setup({
             preselect = cmp.PreselectMode.None,
             formatting = {
-                fields = { "kind", "abbr" },
+                fields = { "abbr", "kind", },
             },
             completion = {
                 -- auto-select the first option, expand by <CR>

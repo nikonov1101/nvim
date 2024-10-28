@@ -37,25 +37,29 @@ end
 
 local function status_line()
     -- todo: do not define colors and spaces here, use colorize()
-    local bufferNumber = "#%n "
-    local gitBranch    = git_branch() .. " "
-    local workdir      = work_dir() .. " :: "
-    local fileFullPath = "%<%f "
-    local modifiedFlag = "%m "
-    local readonlyFlag = "%r "
-    local lineInfo     = "%5l/%L%* %p%%"
+    local bufferNumber  = "#%n"
+    local gitBranch     = git_branch()
+    local workdir       = work_dir()
+    local fileFullPath  = "%<%f "
+    local modifiedFlag  = "%m "
+    local readonlyFlag  = "%r "
+    local lineInfo      = "%5l/%L%* %p%%"
 
-    local aligner      = "%="
+    local aligner       = "%="
+    local leftSeparator = " :: "
 
-    return string.format("%s%s%s%s%s%s%s%s",
-        colorize(bufferNumber, 0),
+    return string.format("%s%s%s%s%s%s%s%s%s%s%s",
+        " ",
         colorize(gitBranch, 2),
+        leftSeparator,
         colorize(workdir, 4),
+        leftSeparator,
         colorize(fileFullPath, 4),
         colorize(modifiedFlag, 1),
         colorize(readonlyFlag, 1),
         aligner,
-        colorize(lineInfo, 2)
+        colorize(lineInfo, 2),
+        " "
     )
 end
 
