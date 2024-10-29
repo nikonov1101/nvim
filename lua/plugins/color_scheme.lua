@@ -6,9 +6,9 @@ local colors = {
     git_added = "#629755",
     git_modified = "#6897BB",
     git_unknown = "#D1675A",
+    noclown_line = "#2a2a2a",
 }
 
--- // TODO(nikonov): move to neotree.lua?
 hi(0, "gitcommitUntracked", { fg = colors.git_unknown })
 hi(0, "NeoTreeGitUntracked", { fg = colors.git_unknown })
 hi(0, "NeoTreeGitModified", { fg = colors.git_modified })
@@ -41,8 +41,32 @@ return {
                 }
             })
             -- or duskfox?
-            vim.cmd.colorscheme("nightfox")
+            -- vim.cmd.colorscheme("nightfox")
         end
+    },
+    {
+        "aktersnurra/no-clown-fiesta.nvim",
+        priority = 999,
+        lazy = false,
+        config = function()
+            local plugin = require("no-clown-fiesta")
+            plugin.setup({
+                styles = {
+                    keywords = { bold = true },
+                    type = { bold = true },
+                    lsp = { underline = false },
+                    match_paren = { underline = true },
+                    comments = {},
+                    functions = {},
+                    variables = {},
+                },
+            })
+            plugin.load()
+            vim.cmd.colorscheme("no-clown-fiesta")
+            -- make current line brighter
+            hi(0, "CursorLine", { bg = colors.noclown_line })
+            hi(0, "CursorLineNr", { bg = colors.noclown_line })
+        end,
     },
     {
         "savq/melange-nvim",
