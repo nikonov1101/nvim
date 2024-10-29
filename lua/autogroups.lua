@@ -48,6 +48,7 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
         vim.keymap.set("n", "grr", function() vim.lsp.buf.references() end, opts)
+        -- TODO: in\out calls
         vim.keymap.set("n", "grn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set("n", "<leader>ls", function() tele.lsp_document_symbols() end, opts)

@@ -6,12 +6,19 @@ return {
         local harpoon = require("harpoon")
         local notify = require("fidget")
 
-        -- notify with a number when file added
         harpoon:extend({
+            -- notify with a number when file added
             ADD = function(ctx)
                 notify.notify("harpoon: " .. ctx.item.value .. " added.", nil,
                     { group = "harpoon", annote = "key: " .. ctx.idx })
             end,
+        })
+
+        vim.api.nvim_create_autocmd('VimLeavePre', {
+            -- cleanup on exit
+            callback = function()
+                harpoon:list():clear()
+            end
         })
 
         harpoon:setup()
