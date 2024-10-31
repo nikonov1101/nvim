@@ -27,7 +27,11 @@ return {
             "nvim-treesitter/nvim-treesitter",
             { "williamboman/mason.nvim", optional = true }, -- by default use Mason for go dependencies
         },
-        opts = {},
+        opts = {
+            commands = {
+                gomodifytags = "gomodifytags",
+            }
+        },
     },
     {
         "stevearc/conform.nvim",
