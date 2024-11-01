@@ -66,6 +66,7 @@ return {
             -- make current line brighter
             hi(0, "CursorLine", { bg = colors.noclown_line })
             hi(0, "CursorLineNr", { bg = colors.noclown_line })
+            hi(0, "@lsp.typemod.variable.readonly.go", { italic = true, fg = "#b46958" })
         end,
     },
     {

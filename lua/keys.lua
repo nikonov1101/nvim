@@ -8,6 +8,7 @@ local function with_opts(s)
 end
 
 vim.keymap.set("n", "<Leader>Q", "<cmd>:wa<cr>:qa<cr>", with_opts("write all, exit"))
+vim.keymap.set("n", "<Leader>w", "<cmd>wa<cr>", with_opts("write all"))
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
@@ -26,10 +27,12 @@ vim.keymap.set("n", ">>", ":bn<cr>", with_opts "To to right buffer")
 -- ALWAYS change and delete into blackhole register
 vim.keymap.set("n", "c", '"_c', with_opts())
 vim.keymap.set("n", "dw", '"_diw', with_opts())
+vim.keymap.set("n", "dW", '"_diW', with_opts())
 
 -- change into a blackhole register
 vim.keymap.set("n", "C", '"_ciw', with_opts())
 vim.keymap.set("n", "cw", '"_ciw', with_opts())
+vim.keymap.set("n", "cW", '"_ciW', with_opts())
 vim.keymap.set("n", 'c"', '"_ci"', with_opts())
 vim.keymap.set("n", "c'", '"_ci\'', with_opts())
 vim.keymap.set("n", "c(", '"_ci(', with_opts())
