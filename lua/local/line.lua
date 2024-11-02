@@ -50,9 +50,9 @@ local function status_line()
 
     return string.format("%s%s%s%s%s%s%s%s%s%s%s",
         " ",
-        colorize(gitBranch, 0),
-        leftSeparator,
         colorize(workdir, 0),
+        leftSeparator,
+        colorize(gitBranch, 0),
         leftSeparator,
         colorize(fileFullPath, 0),
         colorize(modifiedFlag, 0),
