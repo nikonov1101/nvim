@@ -3,6 +3,10 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
+        {
+            "nvim-telescope/telescope-live-grep-args.nvim",
+            version = "^1.0.0",
+        },
     },
     config = function()
         require('telescope').setup({
@@ -13,8 +17,8 @@ return {
                 anchor = "CENTER",
                 layout_config = {
                     prompt_position = "top",
-                    width = 0.9,
-                    height = 0.9,
+                    width = 0.94,
+                    height = 0.94,
                 },
             },
             extensions = {
@@ -33,16 +37,35 @@ return {
                 builtin.find_files()
             end
         end, {})
-        vim.keymap.set("n", "<C-e>", builtin.buffers, {})
-        vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, {})
-        vim.keymap.set("n", "<C-_>", builtin.live_grep, {})
+        vim.keymap.set("n", "<C-e>", builtin.buffers, { desc = "buffers" })
+        vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, { desc = "find here" })
+        vim.keymap.set("n", "<C-_>", builtin.live_grep, { desc = "live grep" })
         -- duplicate as C-/ because C-_ seems broken on macOS
-        vim.keymap.set("n", "<C-/>", builtin.live_grep, {})
-
+        vim.keymap.set("n", "<C-/>", builtin.live_grep, { desc = "live grep" })
         vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Find files" })
+
         vim.keymap.set('n', '<leader>fc', function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })
         end, { desc = "find word under cursor" })
+
+        vim.keymap.set("n", "<leader>fF", function()
+            builtin.find_files({ hidden = true })
+        end, { desc = "find all files" })
+
+        vim.keymap.set("n", "<leader>fg", function()
+            require("telescope").extensions.live_grep_args.live_grep_args({
+                vimgrep_arguments = {
+                    "rg",
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--column",
+                    "--smart-case",
+                    "--no-ignore", -- added this, the rest above are defaults
+                },
+            })
+        end, { desc = "grep in all files" })
     end
 }
