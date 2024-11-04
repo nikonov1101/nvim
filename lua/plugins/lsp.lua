@@ -114,7 +114,7 @@ return {
                                     nonewvars = true,
                                     noresultvalues = true,
                                     printf = true,
-                                    shadow = true, -- MAYBE NOT
+                                    shadow = false, -- MAYBE NOT
                                     shift = true,
                                     sigchanyzer = true,
                                     simplifycompositelit = true,

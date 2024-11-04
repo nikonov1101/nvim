@@ -2,14 +2,20 @@ vim.g.mapleader = " "
 
 local with_opts = require("tools").keymap_opts
 
+vim.keymap.set("n", "<Leader>w", "<cmd>wa<cr>", with_opts("write all"))
+vim.keymap.set("n", "<Leader>q", "<cmd>qa<cr>", with_opts("exit all"))
+
+-- better movements in insert-mode
 vim.keymap.set("i", "jj", "<Esc>", with_opts())
 vim.keymap.set("i", "OO", "<Esc>o", with_opts())
 vim.keymap.set("i", "II", "<Esc>I", with_opts())
 vim.keymap.set("i", "AA", "<Esc>A", with_opts())
 
-vim.keymap.set("n", "<Leader>Q", "<cmd>:wa<cr>:qa<cr>", with_opts("write all, exit"))
-vim.keymap.set("n", "<Leader>w", "<cmd>wa<cr>", with_opts("write all"))
+-- select left/right window with less keystrokes
+vim.keymap.set("n", "<C-h>", "<C-w>h", with_opts())
+vim.keymap.set("n", "<C-l>", "<C-w>l", with_opts())
 
+-- copy to a system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
 
