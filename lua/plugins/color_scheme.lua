@@ -9,7 +9,7 @@ local colors = {
 
 local function repaint()
     -- go constant and constant usage must match
-    vim.api.nvim_set_hl(0, "@lsp.typemod.variable.readonly.go", { link = "Constant" })
+    vim.api.nvim_set_hl(0, "@lsp.typemod.variable.readonly.go", { italic = true, fg = "#b46958" })
 
     -- make NeoTree match the current theme
     vim.api.nvim_set_hl(0, "gitcommitUntracked", { fg = colors.git_unknown })
@@ -22,10 +22,12 @@ local function repaint()
     vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "#121212" })
     vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "#121212" })
 
+    -- make Flash jump label more distinguishable
+    vim.api.nvim_set_hl(0, "FlashLabel", { bold = true, bg = "#0000aa" })
+
     -- make current line brighter
     vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.noclown_line })
     vim.api.nvim_set_hl(0, "CursorLineNr", { bg = colors.noclown_line })
-    vim.api.nvim_set_hl(0, "@lsp.typemod.variable.readonly.go", { italic = true, fg = "#b46958" })
 end
 
 return {
