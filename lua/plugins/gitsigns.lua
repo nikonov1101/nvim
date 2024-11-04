@@ -30,14 +30,12 @@ return {
 
                 -- view with telescope, V for VCS
                 local tele = require("telescope.builtin")
-                map('n', '<leader>vl', tele.git_bcommits, { desc = "git log (buffer)" })
-                map('n', '<leader>vL', tele.git_commits, { desc = "git log (all)" })
+                map('n', '<leader>vL', tele.git_bcommits, { desc = "git log (buffer)" })
+                map('n', '<leader>vl', tele.git_commits, { desc = "git log (all)" })
                 map('n', '<leader>vb', tele.git_branches, { desc = "git branches" })
                 map('n', '<leader>vs', "<cmd>Neotree float git_status<cr>", { desc = "git status" })
 
                 -- Actions
-                map('n', '<leader>gs', gitsigns.stage_hunk, { desc = "stage hunk" })
-                map('n', '<leader>gr', gitsigns.reset_hunk, { desc = "reset hunk" })
                 map('v', '<leader>gs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
                     { desc = "stage hunk" })
                 map('v', '<leader>gr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,

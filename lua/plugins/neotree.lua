@@ -15,6 +15,7 @@ return {
         "MunifTanjim/nui.nvim",
     },
     opts = {
+        hide_root_node = true,
         tabs_layout = "active",
         add_blank_line_at_top = false,
         use_popups_for_input = false,
@@ -60,10 +61,11 @@ return {
             },
         },
         filesystem = {
+            use_libuv_file_watcher = true,
             group_empty_dirs = true,
             follow_current_file = {
-                enabled = false,         -- This will find and focus the file in the active buffer every time
-                leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+                enabled = true,         -- This will find and focus the file in the active buffer every time
+                leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
             },
             filtered_items = {
                 visible = true,

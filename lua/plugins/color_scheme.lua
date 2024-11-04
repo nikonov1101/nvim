@@ -1,5 +1,3 @@
-local hi = vim.api.nvim_set_hl
-
 local colors = {
     just_white = "#ffffff",
     medium_gray = "#6C6C6C",
@@ -9,12 +7,26 @@ local colors = {
     noclown_line = "#2a2a2a",
 }
 
-hi(0, "gitcommitUntracked", { fg = colors.git_unknown })
-hi(0, "NeoTreeGitUntracked", { fg = colors.git_unknown })
-hi(0, "NeoTreeGitModified", { fg = colors.git_modified })
-hi(0, "NeoTreeGitAdded", { fg = colors.git_added })
-hi(0, "NeoTreeDirectoryName", { fg = colors.just_white })
-hi(0, "@lsp.typemod.variable.readonly.go", { link = "Constant" })
+local function repaint()
+    -- go constant and constant usage must match
+    vim.api.nvim_set_hl(0, "@lsp.typemod.variable.readonly.go", { link = "Constant" })
+
+    -- make NeoTree match the current theme
+    vim.api.nvim_set_hl(0, "gitcommitUntracked", { fg = colors.git_unknown })
+    vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = colors.git_unknown })
+    vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = colors.git_modified })
+    vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = colors.git_added })
+    vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = colors.just_white })
+    vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { bg = 'none', fg = '#151515' })
+    vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = '#121212' })
+    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = '#121212' })
+    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = '#121212' })
+
+    -- make current line brighter
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.noclown_line })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { bg = colors.noclown_line })
+    vim.api.nvim_set_hl(0, "@lsp.typemod.variable.readonly.go", { italic = true, fg = "#b46958" })
+end
 
 return {
     {
@@ -63,10 +75,7 @@ return {
             })
             plugin.load()
             vim.cmd.colorscheme("no-clown-fiesta")
-            -- make current line brighter
-            hi(0, "CursorLine", { bg = colors.noclown_line })
-            hi(0, "CursorLineNr", { bg = colors.noclown_line })
-            hi(0, "@lsp.typemod.variable.readonly.go", { italic = true, fg = "#b46958" })
+            repaint()
         end,
     },
     {
