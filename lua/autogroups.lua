@@ -2,18 +2,17 @@
 -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/init.lua
 --
 local augroup = vim.api.nvim_create_augroup
-local the_autoformat_group = augroup('the_autoformat_group', {})
+local the_autoformat_group = augroup("the_autoformat_group", {})
 
 local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup('HighlightYank', {})
+local yank_group = augroup("HighlightYank", {})
 
-
-autocmd('TextYankPost', {
+autocmd("TextYankPost", {
     group = yank_group,
-    pattern = '*',
+    pattern = "*",
     callback = function()
         vim.highlight.on_yank({
-            higroup = 'IncSearch',
+            higroup = "IncSearch",
             timeout = 70,
         })
     end,
@@ -27,20 +26,23 @@ autocmd("BufWritePre", {
 autocmd("BufWritePre", {
     group = the_autoformat_group,
     pattern = "*",
-    callback = function()
-        vim.lsp.buf.format()
-    end,
+    callback = function() vim.lsp.buf.format() end,
 })
-autocmd("BufWritePre", {
+autocmd("bufwritepre", {
     group = the_autoformat_group,
     pattern = "*.go",
     callback = function()
-        vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
-        vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
-    end
+        vim.lsp.buf.code_action({ context = { only = { "source.organizeimports" } }, apply = true })
+        vim.lsp.buf.code_action({ context = { only = { "source.fixall" } }, apply = true })
+    end,
+})
+autocmd("bufwritepre", {
+    group = the_autoformat_group,
+    pattern = "*.lua",
+    callback = function() require("stylua-nvim").format_file() end,
 })
 
-autocmd('LspAttach', {
+autocmd("LspAttach", {
     group = the_autoformat_group,
     callback = function(e)
         local tele = require("telescope.builtin")
@@ -60,25 +62,17 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "[e", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]e", function() vim.diagnostic.goto_prev() end, opts)
 
-        vim.lsp.handlers["textDocument/references"] = function(_, _, _)
-            tele.lsp_references()
-        end
-        vim.lsp.handlers["textDocument/implementation"] = function(_, _, _)
-            tele.lsp_implementations()
-        end
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-            vim.lsp.handlers.hover, {
-                border = "single",
-                focus = false,
-                focusable = false,
-            }
-        )
-        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-            vim.lsp.handlers.signature_help, {
-                border = "single",
-                focus = false,
-                focusable = false,
-            }
-        )
-    end
+        vim.lsp.handlers["textDocument/references"] = function(_, _, _) tele.lsp_references() end
+        vim.lsp.handlers["textDocument/implementation"] = function(_, _, _) tele.lsp_implementations() end
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+            border = "single",
+            focus = false,
+            focusable = false,
+        })
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+            border = "single",
+            focus = false,
+            focusable = false,
+        })
+    end,
 })

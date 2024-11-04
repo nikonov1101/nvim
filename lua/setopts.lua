@@ -1,7 +1,7 @@
 vim.opt.cursorline = true
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.scrolloff = 10
 vim.opt.tabstop = 4
@@ -14,10 +14,10 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 -- Searching
-vim.opt.incsearch = true     -- search as characters are entered
-vim.opt.hlsearch = false     -- do not highlight matches
-vim.opt.ignorecase = true    -- ignore case in searches by default
-vim.opt.smartcase = true     -- but make it case sensitive if an uppercase is entered
+vim.opt.incsearch = true -- search as characters are entered
+vim.opt.hlsearch = false -- do not highlight matches
+vim.opt.ignorecase = true -- ignore case in searches by default
+vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
 
 vim.opt.termguicolors = true -- enabl 24-bit RGB color in the TUI
 
@@ -36,14 +36,14 @@ vim.opt.laststatus = 3
 -- statusline to show buffer number before the file name
 -- statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
-vim.opt.showmode = false   -- we are experienced, wo don't need the '-- INSERT --' mode hint
-vim.opt.splitbelow = true  -- open new vertical split bottom
-vim.opt.splitright = true  -- open new horizontal splits right
+vim.opt.showmode = false -- we are experienced, wo don't need the '-- INSERT --' mode hint
+vim.opt.splitbelow = true -- open new vertical split bottom
+vim.opt.splitright = true -- open new horizontal splits right
 
-vim.opt.confirm = true     -- confirm write instead of error
+vim.opt.confirm = true -- confirm write instead of error
 vim.opt.visualbell = false -- no visual bell
 vim.opt.errorbells = false
 vim.opt.autowrite = true
 vim.opt.autowriteall = true -- auto-write changes on buffer changes, on exit, etc
 
-vim.opt.synmaxcol = 300     -- Text after this column is not highlighted
+vim.opt.synmaxcol = 300 -- Text after this column is not highlighted

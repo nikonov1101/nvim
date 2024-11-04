@@ -9,7 +9,7 @@ return {
         },
     },
     config = function()
-        require('telescope').setup({
+        require("telescope").setup({
             defaults = {
                 sorting_strategy = "ascending",
                 results_title = false,
@@ -23,19 +23,18 @@ return {
             },
             extensions = {
                 ["ui-select"] = {
-                    require("telescope.themes").get_dropdown {
+                    require("telescope.themes").get_dropdown({
                         -- even more opts
-                    } }
-            }
+                    }),
+                },
+            },
         })
         require("telescope").load_extension("ui-select")
 
-        local builtin = require('telescope.builtin')
+        local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<C-o>", function()
             local ok, _ = pcall(builtin.git_files)
-            if not ok then
-                builtin.find_files()
-            end
+            if not ok then builtin.find_files() end
         end, {})
         vim.keymap.set("n", "<C-e>", builtin.buffers, { desc = "buffers" })
         vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, { desc = "find here" })
@@ -44,14 +43,17 @@ return {
         vim.keymap.set("n", "<C-/>", builtin.live_grep, { desc = "live grep" })
         vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Find files" })
 
-        vim.keymap.set('n', '<leader>fc', function()
+        vim.keymap.set("n", "<leader>fc", function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })
         end, { desc = "find word under cursor" })
 
-        vim.keymap.set("n", "<leader>fF", function()
-            builtin.find_files({ hidden = true })
-        end, { desc = "find all files" })
+        vim.keymap.set(
+            "n",
+            "<leader>fF",
+            function() builtin.find_files({ hidden = true }) end,
+            { desc = "find all files" }
+        )
 
         vim.keymap.set("n", "<leader>fg", function()
             require("telescope").extensions.live_grep_args.live_grep_args({
@@ -67,5 +69,5 @@ return {
                 },
             })
         end, { desc = "grep in all files" })
-    end
+    end,
 }

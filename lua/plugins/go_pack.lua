@@ -18,7 +18,7 @@ return {
         ft = "go",
         build = function()
             if not require("lazy.core.config").spec.plugins["mason.nvim"] then
-                vim.print "Installing go dependencies..."
+                vim.print("Installing go dependencies...")
                 vim.cmd.GoInstallDeps()
             end
         end,
@@ -30,7 +30,7 @@ return {
         opts = {
             commands = {
                 gomodifytags = "gomodifytags",
-            }
+            },
         },
     },
     {

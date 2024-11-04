@@ -5,7 +5,11 @@ return {
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
-                "vimdoc", "c", "lua", "bash", "go",
+                "vimdoc",
+                "c",
+                "lua",
+                "bash",
+                "go",
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -16,7 +20,7 @@ return {
             auto_install = true,
 
             indent = {
-                enable = true
+                enable = true,
             },
 
             highlight = {
@@ -30,5 +34,5 @@ return {
                 additional_vim_regex_highlighting = { "markdown" },
             },
         })
-    end
+    end,
 }

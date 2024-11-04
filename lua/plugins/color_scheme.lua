@@ -17,10 +17,10 @@ local function repaint()
     vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = colors.git_modified })
     vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = colors.git_added })
     vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = colors.just_white })
-    vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { bg = 'none', fg = '#151515' })
-    vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = '#121212' })
-    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = '#121212' })
-    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = '#121212' })
+    vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { bg = "none", fg = "#151515" })
+    vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = "#121212" })
+    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "#121212" })
+    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "#121212" })
 
     -- make current line brighter
     vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.noclown_line })
@@ -43,18 +43,18 @@ return {
         -- nice set of themes, give it a try
         "EdenEast/nightfox.nvim",
         config = function()
-            require('nightfox').setup({
+            require("nightfox").setup({
                 options = {
                     styles = {
                         comments = "italic",
                         keywords = "bold",
                         types = "italic,bold",
-                    }
-                }
+                    },
+                },
             })
             -- or duskfox?
             -- vim.cmd.colorscheme("nightfox")
-        end
+        end,
     },
     {
         "aktersnurra/no-clown-fiesta.nvim",
@@ -82,10 +82,10 @@ return {
         "savq/melange-nvim",
         config = function()
             -- vim.cmd.colorscheme("melange")
-        end
+        end,
     },
     {
-        'sainnhe/everforest',
+        "sainnhe/everforest",
         lazy = false,
         priority = 1000,
         config = function()
@@ -93,6 +93,6 @@ return {
             -- directly inside the plugin declaration.
             vim.g.everforest_enable_italic = true
             -- vim.cmd.colorscheme('everforest')
-        end
-    }
+        end,
+    },
 }

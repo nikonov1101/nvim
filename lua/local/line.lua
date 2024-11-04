@@ -9,9 +9,7 @@ local function git_branch()
     end
 end
 
-local function colorize(s, colorn)
-    return string.format("%%%d*%s%%*", colorn, s)
-end
+local function colorize(s, colorn) return string.format("%%%d*%s%%*", colorn, s) end
 
 local function work_dir()
     -- :t truncates the given CWD to a last segment,
@@ -38,17 +36,18 @@ end
 
 local function status_line()
     -- local bufferNumber  = "#%n"
-    local gitBranch     = git_branch()
-    local workdir       = work_dir()
-    local fileFullPath  = "%<%f"
-    local modifiedFlag  = " %m"
-    local readonlyFlag  = " %r"
-    local lineInfo      = "%5l/%L%* %p%%"
+    local gitBranch = git_branch()
+    local workdir = work_dir()
+    local fileFullPath = "%<%f"
+    local modifiedFlag = " %m"
+    local readonlyFlag = " %r"
+    local lineInfo = "%5l/%L%* %p%%"
 
-    local aligner       = "%="
+    local aligner = "%="
     local leftSeparator = " :: "
 
-    return string.format("%s%s%s%s%s%s%s%s%s%s%s",
+    return string.format(
+        "%s%s%s%s%s%s%s%s%s%s%s",
         " ",
         colorize(workdir, 0),
         leftSeparator,
@@ -65,11 +64,8 @@ end
 
 vim.opt.statusline = status_line()
 
-local function update_status_line()
-end
+local function update_status_line() end
 
-function M.setup()
-    update_status_line()
-end
+function M.setup() update_status_line() end
 
 return M

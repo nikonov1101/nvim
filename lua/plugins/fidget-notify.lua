@@ -16,7 +16,7 @@ return {
             },
             window = {
                 align = "top",
-            }
+            },
         },
     },
 }

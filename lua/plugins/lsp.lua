@@ -11,35 +11,34 @@ return {
         "hrsh7th/cmp-nvim-lsp-signature-help",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
-        { 'Bilal2453/luvit-meta', lazy = true },
+        "ckipp01/stylua-nvim",
+        { "Bilal2453/luvit-meta", lazy = true },
         {
             -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
             -- used for completion, annotations and signatures of Neovim apis
-            'folke/lazydev.nvim',
-            ft = 'lua',
+            "folke/lazydev.nvim",
+            ft = "lua",
             opts = {
                 library = {
                     -- Load luvit types when the `vim.uv` word is found
-                    { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+                    { path = "luvit-meta/library", words = { "vim%.uv" } },
                 },
             },
         },
     },
 
     config = function()
-        local cmp = require('cmp')
+        local cmp = require("cmp")
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
-
-        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-        cmp.event:on(
-            'confirm_done',
-            cmp_autopairs.on_confirm_done()
+            cmp_lsp.default_capabilities()
         )
+
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
         require("mason").setup()
         require("mason-lspconfig").setup({
@@ -50,14 +49,14 @@ return {
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
+                    require("lspconfig")[server_name].setup({
+                        capabilities = capabilities,
+                    })
                 end,
 
                 ["gopls"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.gopls.setup {
+                    lspconfig.gopls.setup({
                         capabilities = capabilities,
                         single_file_support = true,
                         settings = {
@@ -143,24 +142,24 @@ return {
                                 },
                             },
                         },
-                    }
+                    })
                 end,
 
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
+                    lspconfig.lua_ls.setup({
                         capabilities = capabilities,
                         settings = {
                             Lua = {
                                 runtime = { version = "Lua 5.1" },
                                 diagnostics = {
                                     globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
+                                },
+                            },
+                        },
+                    })
                 end,
-            }
+            },
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -168,7 +167,7 @@ return {
         cmp.setup({
             preselect = cmp.PreselectMode.None,
             formatting = {
-                fields = { "abbr", "kind", },
+                fields = { "abbr", "kind" },
             },
             completion = {
                 -- auto-select the first option, expand by <CR>
@@ -181,24 +180,25 @@ return {
             },
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ["<CR>"] = cmp.mapping.confirm { select = true },
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+                ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+                ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
             }),
             sources = cmp.config.sources({
-                { name = 'luasnip',                 priority = 9999, option = { show_autosnippets = true } },
-                { name = 'nvim_lsp_signature_help', priority = 400 }, -- function signatures
-                { name = 'nvim_lsp',                priority = 300 },
-                { name = 'buffer',                  priority = 200 },
-                { name = 'path',                    priority = 100 },
+                { name = "lazydev", group_index = 0 },
+                { name = "luasnip", priority = 9999, option = { show_autosnippets = true } },
+                { name = "nvim_lsp_signature_help", priority = 400 }, -- function signatures
+                { name = "nvim_lsp", priority = 300 },
+                { name = "buffer", priority = 200 },
+                { name = "path", priority = 100 },
             }),
             enable = function()
                 -- disable completion in comments
-                local context = require 'cmp.config.context'
+                local context = require("cmp.config.context")
                 return not context.in_treesitter_capture("comment")
                     and not context.in_syntax_group("Comment")
                     and not context.in_syntax_group("TSComment")
@@ -212,10 +212,10 @@ return {
                 focusable = false,
                 scope = "line", -- or "cursor" to show only hovered
                 border = "single",
-                source = "always",
+                source = true,
                 header = "",
                 prefix = "",
             },
         })
-    end
+    end,
 }

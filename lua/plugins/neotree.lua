@@ -47,16 +47,16 @@ return {
             },
             git_status = {
                 symbols = {
-                    added     = "+",
-                    modified  = "",
-                    deleted   = "",
-                    renamed   = "",
+                    added = "+",
+                    modified = "",
+                    deleted = "",
+                    renamed = "",
                     -- Status type
                     untracked = "",
-                    ignored   = "",
-                    unstaged  = "",
-                    staged    = "+",
-                    conflict  = "",
+                    ignored = "",
+                    unstaged = "",
+                    staged = "+",
+                    conflict = "",
                 },
             },
         },
@@ -64,7 +64,7 @@ return {
             use_libuv_file_watcher = true,
             group_empty_dirs = true,
             follow_current_file = {
-                enabled = true,         -- This will find and focus the file in the active buffer every time
+                enabled = true, -- This will find and focus the file in the active buffer every time
                 leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
             },
             filtered_items = {
@@ -95,9 +95,7 @@ return {
             },
         },
         commands = {
-            system_open = function(state)
-                (vim.ui.open)(state.tree:get_node():get_id())
-            end,
+            system_open = function(state) (vim.ui.open)(state.tree:get_node():get_id()) end,
 
             parent_or_close = function(state)
                 local node = state.tree:get_node()
@@ -113,7 +111,7 @@ return {
                 if node:has_children() then
                     if not node:is_expanded() then -- if unexpanded, expand
                         state.commands.toggle_node(state)
-                    else                           -- if expanded and has children, seleect the next child
+                    else -- if expanded and has children, seleect the next child
                         if node.type == "file" then
                             state.commands.open(state)
                         else
@@ -124,6 +122,6 @@ return {
                     state.commands.open(state)
                 end
             end,
-        }
+        },
     },
 }

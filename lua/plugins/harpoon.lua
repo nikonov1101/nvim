@@ -9,16 +9,17 @@ return {
         harpoon:extend({
             -- notify with a number when file added
             ADD = function(ctx)
-                notify.notify("harpoon: " .. ctx.item.value .. " added.", nil,
-                    { group = "harpoon", annote = "key: " .. ctx.idx })
+                notify.notify(
+                    "harpoon: " .. ctx.item.value .. " added.",
+                    nil,
+                    { group = "harpoon", annote = "key: " .. ctx.idx }
+                )
             end,
         })
 
-        vim.api.nvim_create_autocmd('VimLeavePre', {
+        vim.api.nvim_create_autocmd("VimLeavePre", {
             -- cleanup on exit
-            callback = function()
-                harpoon:list():clear()
-            end
+            callback = function() harpoon:list():clear() end,
         })
 
         harpoon:setup()
@@ -37,5 +38,5 @@ return {
         -- Toggle previous & next buffers stored within Harpoon list
         vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
         vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
-    end
+    end,
 }
