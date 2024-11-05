@@ -17,22 +17,8 @@ local function work_dir()
     return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 end
 
--- todo: copy colors definitions from plugins/darkula_theme.lua
--- and keep them in a single place.
 --
--- local hi = vim.api.nvim_set_hl
--- hi(0, "User1", { fg = "#eea040" })
---
--- hi User1 guifg=#eea040 guibg=#222222
--- hi User2 guifg=#dd3333 guibg=#222222
--- hi User3 guifg=#ff66ff guibg=#222222
--- hi User4 guifg=#a0ee40 guibg=#222222
--- hi User5 guifg=#eeee40 guibg=#222222
---
--- If the statusline is not updated when you want it (e.g., after setting
--- a variable that's used in an expression), you can force an update by
--- using `:redrawstatus`.
--- // TODO(nikonov): use https://github.com/EdenEast/nightfox.nvim?tab=readme-ov-file#interactive to build better status line.
+local macro = ""
 
 local function status_line()
     -- local bufferNumber  = "#%n"
@@ -42,12 +28,12 @@ local function status_line()
     local modifiedFlag = " %m"
     local readonlyFlag = " %r"
     local lineInfo = "%5l/%L%* %p%%"
+    local cmdLine = "%S" -- show cmdline content in statusline
 
     local aligner = "%="
     local leftSeparator = " :: "
 
-    return string.format(
-        "%s%s%s%s%s%s%s%s%s%s%s",
+    return table.concat({
         " ",
         colorize(workdir, 0),
         leftSeparator,
@@ -57,15 +43,33 @@ local function status_line()
         colorize(modifiedFlag, 0),
         colorize(readonlyFlag, 0),
         aligner,
+        " ",
+        macro,
+        " ",
+        cmdLine,
         colorize(lineInfo, 0),
-        " "
-    )
+        " ",
+    }, "")
 end
 
-vim.opt.statusline = status_line()
+function M.setup()
+    local group = vim.api.nvim_create_augroup("status-line-hooks", {})
+    vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+        group = group,
+        callback = function(ctx)
+            if ctx.event == "RecordingEnter" then macro = "recording @" .. vim.fn.reg_recording() end
+            if ctx.event == "RecordingLeave" then macro = "@" .. vim.fn.reg_recording() end
 
-local function update_status_line() end
+            -- redraw status line with updated macros status
+            vim.opt.statusline = status_line()
+        end,
+    })
 
-function M.setup() update_status_line() end
+    -- move status line from separate line to a statusline
+    -- (%S in the status_line() function)
+    vim.opt.cmdheight = 0
+    vim.opt.showcmdloc = "statusline"
+    vim.opt.statusline = status_line()
+end
 
 return M

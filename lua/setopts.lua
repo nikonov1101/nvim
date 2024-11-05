@@ -12,7 +12,6 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.foldmethod = "indent"
 
 -- Searching
 vim.opt.incsearch = true -- search as characters are entered
@@ -44,7 +43,4 @@ vim.opt.splitright = true -- open new horizontal splits right
 vim.opt.confirm = true -- confirm write instead of error
 vim.opt.visualbell = false -- no visual bell
 vim.opt.errorbells = false
-vim.opt.autowrite = true
-vim.opt.autowriteall = true -- auto-write changes on buffer changes, on exit, etc
-
 vim.opt.synmaxcol = 300 -- Text after this column is not highlighted

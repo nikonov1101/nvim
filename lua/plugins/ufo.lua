@@ -10,7 +10,7 @@ return {
         vim.o.foldlevelstart = 99
         -- hide fold column
         vim.o.foldcolumn = "0"
-        vim.o.foldenable = false
+        vim.opt.foldmethod = "indent"
 
         ufo.setup({
             provider_selector = function(_, _, _) return { "treesitter", "indent" } end,

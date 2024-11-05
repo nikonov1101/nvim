@@ -2,13 +2,12 @@
 -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/init.lua
 --
 local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
 local the_autoformat_group = augroup("the_autoformat_group", {})
 
-local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup("HighlightYank", {})
-
 autocmd("TextYankPost", {
-    group = yank_group,
+    group = augroup("HighlightYank", {}),
     pattern = "*",
     callback = function()
         vim.highlight.on_yank({
