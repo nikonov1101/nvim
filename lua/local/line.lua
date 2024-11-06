@@ -1,5 +1,7 @@
 local M = {}
 
+local tools = require("tools")
+
 local function git_branch()
     local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
     if string.len(branch) > 0 then
@@ -11,19 +13,12 @@ end
 
 local function colorize(s, colorn) return string.format("%%%d*%s%%*", colorn, s) end
 
-local function work_dir()
-    -- :t truncates the given CWD to a last segment,
-    -- which is often used as a project name.
-    return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-end
-
---
 local macro = ""
 
 local function status_line()
     -- local bufferNumber  = "#%n"
     local gitBranch = git_branch()
-    local workdir = work_dir()
+    local workdir = tools.cwd_basename()
     local fileFullPath = "%<%f"
     local modifiedFlag = " %m"
     local readonlyFlag = " %r"

@@ -21,7 +21,11 @@ function M.len_of(t)
     return count
 end
 
-function M.cwd_basename() return vim.fn.fnamemodify(vim.fn.getcwd(), ":t") end
+function M.cwd_basename()
+    -- :t truncates the given CWD to a last segment,
+    -- which is often used as a project name.
+    return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+end
 
 function M.keymap_opts(s)
     local ta = { noremap = true, silent = true }

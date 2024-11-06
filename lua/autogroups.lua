@@ -65,8 +65,8 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, opts)
         vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<SC-K>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "[e", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]e", function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set("n", "]e", function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set("n", "[e", function() vim.diagnostic.goto_prev() end, opts)
 
         vim.lsp.handlers["textDocument/references"] = function(_, _, _) tele.lsp_references() end
         vim.lsp.handlers["textDocument/implementation"] = function(_, _, _) tele.lsp_implementations() end
