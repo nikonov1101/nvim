@@ -87,6 +87,8 @@ return {
                 O = "system_open",
                 ["<left>"] = "parent_or_close",
                 ["<right>"] = "child_or_open",
+                ["h"] = "parent_or_close",
+                ["l"] = "child_or_open",
                 ["n"] = "add",
                 ["ga"] = "git_add_file",
                 ["gr"] = "git_revert_file",
