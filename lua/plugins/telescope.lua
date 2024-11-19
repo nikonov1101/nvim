@@ -1,5 +1,3 @@
-local livegrep_last = 0
-
 return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -41,14 +39,7 @@ return {
 
         vim.keymap.set("n", "<C-e>", builtin.buffers, { desc = "buffers" })
 
-        vim.keymap.set("n", "<C-p>", function()
-            if livegrep_last == 0 then
-                livegrep_last = 1
-                builtin.live_grep()
-            else
-                builtin.resume()
-            end
-        end, { desc = "live grep" })
+        vim.keymap.set("n", "<C-p>", builtin.live_grep, { desc = "live grep" })
 
         vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Find files" })
 
