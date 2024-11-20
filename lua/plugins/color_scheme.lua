@@ -13,6 +13,12 @@ local function repaint()
 
     -- make NeoTree match the current theme
     vim.api.nvim_set_hl(0, "gitcommitUntracked", { fg = colors.git_unknown })
+
+    -- https://github.com/sindrets/diffview.nvim/blob/main/lua/diffview/hl.lua#L388
+    vim.api.nvim_set_hl(0, "DiffviewStatusUntracked", { fg = colors.git_unknown })
+    vim.api.nvim_set_hl(0, "DiffviewStatusModified", { fg = colors.git_modified })
+    vim.api.nvim_set_hl(0, "DiffviewStatusAdded", { fg = colors.git_added })
+
     vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = colors.git_unknown })
     vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = colors.git_modified })
     vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = colors.git_added })

@@ -69,7 +69,8 @@ return {
     {
         "sindrets/diffview.nvim",
         config = function()
-            vim.keymap.set("n", "<leader>GG", "<cmd>:DiffviewOpen<cr>")
+            vim.keymap.set("n", "<leader>GG", "<cmd>:DiffviewOpen -uno<cr>")
+            vim.keymap.set("n", "<leader>GU", "<cmd>:DiffviewOpen<cr>")
             vim.keymap.set("n", "<leader>GC", "<cmd>:DiffviewClose<cr>")
             vim.keymap.set("n", "<leader>GF", "<cmd>:DiffviewFileHistory %<cr>")
 
@@ -78,6 +79,7 @@ return {
             require("diffview").setup({
                 use_icons = false,
                 file_panel = {
+                    listing_style = "list",
                     win_config = {
                         position = "left",
                         width = 33,

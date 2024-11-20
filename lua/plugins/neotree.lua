@@ -5,7 +5,7 @@ vim.g.nvim_tree_show_icons = {
     folder_arrows = 0,
 }
 
-vim.keymap.set("n", "<Leader>o", "<cmd>Neotree filesystem reveal left<cr>", {})
+vim.keymap.set("n", "<Leader>o", "<cmd>Neotree filesystem reveal float<cr>", {})
 
 return {
     "nvim-neo-tree/neo-tree.nvim",
@@ -70,8 +70,8 @@ return {
             filtered_items = {
                 visible = true,
                 never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-                    --".DS_Store",
-                    --"thumbs.db"
+                    ".DS_Store",
+                    "thumbs.db",
                 },
             },
         },
