@@ -33,4 +33,22 @@ function M.keymap_opts(s)
     return ta
 end
 
+function M.git_branch()
+    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    if string.len(branch) > 0 then
+        return branch
+    else
+        return "[no git]"
+    end
+end
+
+function M.git_shortstat()
+    local s = vim.fn.system("git diff --shortstat HEAD | sed -e 's/insertions/ins/;s/deletions/del/' | tr -d '\n'")
+    if string.len(s) > 0 then
+        return s
+    else
+        return "???"
+    end
+end
+
 return M

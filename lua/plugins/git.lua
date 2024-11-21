@@ -73,6 +73,7 @@ return {
             vim.keymap.set("n", "<leader>GU", "<cmd>:DiffviewOpen<cr>")
             vim.keymap.set("n", "<leader>GC", "<cmd>:DiffviewClose<cr>")
             vim.keymap.set("n", "<leader>GF", "<cmd>:DiffviewFileHistory %<cr>")
+            vim.keymap.set("n", "<leader>GK", function() require("local.commit").show() end)
 
             local actions = require("diffview.actions")
             -- https://github.com/sindrets/diffview.nvim?tab=readme-ov-file#configuration
@@ -87,7 +88,9 @@ return {
                     },
                 },
                 default_args = { -- Default args prepended to the arg-list for the listed commands
-                    DiffviewOpen = {},
+                    DiffviewOpen = {
+                        "--imply-local",
+                    },
                     DiffviewFileHistory = {},
                 },
                 keymaps = {

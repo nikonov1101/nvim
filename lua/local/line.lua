@@ -2,22 +2,13 @@ local M = {}
 
 local tools = require("tools")
 
-local function git_branch()
-    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    if string.len(branch) > 0 then
-        return branch
-    else
-        return "[no git]"
-    end
-end
-
 local function colorize(s, colorn) return string.format("%%%d*%s%%*", colorn, s) end
 
 local macro = ""
 
 local function status_line()
     -- local bufferNumber  = "#%n"
-    local gitBranch = git_branch()
+    local gitBranch = tools.git_branch()
     local workdir = tools.cwd_basename()
     local fileFullPath = "%<%f"
     local modifiedFlag = " %m"
