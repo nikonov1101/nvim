@@ -1,4 +1,4 @@
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,curdir,folds,help,tabpages,winsize,winpos,localoptions,options"
 
 return {
     "rmagatti/auto-session",
