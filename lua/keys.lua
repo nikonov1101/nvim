@@ -22,13 +22,10 @@ vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
 -- jump half-page up/down centers the cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
--- also center the search results
+-- also center the search results,
+-- zz to center, zv to open a fold
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-
--- << and >> navigate buffers, works much better than [-b for me
-vim.keymap.set("n", "<<", ":bp<cr>", with_opts("To to left buffer"))
-vim.keymap.set("n", ">>", ":bn<cr>", with_opts("To to right buffer"))
 
 -- ALWAYS change and delete into blackhole register
 vim.keymap.set("n", "c", "\"_c", with_opts())
