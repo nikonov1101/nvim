@@ -2,38 +2,35 @@ local M = {}
 
 local tools = require("tools")
 
-local function colorize(s, colorn) return string.format("%%%d*%s%%*", colorn, s) end
-
 local macro = ""
 
 local function status_line()
-    -- local bufferNumber  = "#%n"
     local gitBranch = tools.git_branch()
     local workdir = tools.cwd_basename()
     local fileFullPath = "%<%f"
     local modifiedFlag = " %m"
     local readonlyFlag = " %r"
-    local lineInfo = "%5l/%L%* %p%%"
+    local lineInfo = "%5l/%L %p%%"
     local cmdLine = "%S" -- show cmdline content in statusline
 
     local aligner = "%="
     local leftSeparator = " :: "
 
     return table.concat({
-        " ",
-        colorize(workdir, 0),
+        "%1* ", -- colorize all with User1
+        workdir,
         leftSeparator,
-        colorize(gitBranch, 0),
+        gitBranch,
         leftSeparator,
-        colorize(fileFullPath, 0),
-        colorize(modifiedFlag, 0),
-        colorize(readonlyFlag, 0),
+        fileFullPath,
+        modifiedFlag,
+        readonlyFlag,
         aligner,
         " ",
         macro,
         " ",
         cmdLine,
-        colorize(lineInfo, 0),
+        lineInfo,
         " ",
     }, "")
 end

@@ -34,6 +34,7 @@ local function repaint()
     -- make current line brighter
     vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.noclown_line })
     vim.api.nvim_set_hl(0, "CursorLineNr", { bg = colors.noclown_line })
+    vim.api.nvim_set_hl(0, "User1", { fg = colors.medium_gray, bg = "none" })
 end
 
 return {
