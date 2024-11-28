@@ -5,6 +5,12 @@ local with_opts = require("tools").keymap_opts
 vim.keymap.set("n", "<Leader>w", "<cmd>wa<cr>", with_opts("write all"))
 vim.keymap.set("n", "<Leader>q", "<cmd>qa<cr>", with_opts("exit all"))
 
+-- maybe this will help me
+vim.keymap.set({ "n", "v" }, "<left>", "")
+vim.keymap.set({ "n", "v" }, "<right>", "")
+vim.keymap.set({ "n", "v" }, "<up>", "")
+vim.keymap.set({ "n", "v" }, "<down>", "")
+
 -- better movements in insert-mode
 vim.keymap.set("i", "jj", "<Esc>", with_opts())
 vim.keymap.set("i", "OO", "<Esc>o", with_opts())
