@@ -1,5 +1,12 @@
 local t = require("tools")
-print(t.dump_table(t))
+-- print(t.dump_table(t))
+
+local r = {
+    "a",
+    "b",
+}
+
+print(table.concat(r, ", "))
 
 -- require("local.gitc").show()
 -- print(tools.dump_table(tools))

@@ -30,41 +30,62 @@ local function lsp_diag()
     if infos > 0 then table.insert(ret, "I:" .. infos) end
     if hints > 0 then table.insert(ret, "H:" .. hints) end
 
+    if next(ret) == nil then return nil end
     return table.concat(ret, " ")
 end
 
+local function git_diff_lines() return vim.b.gitsigns_status end
+
 local macro = ""
+
+local function file_flags()
+    local buf = vim.api.nvim_win_get_buf(0)
+    local ret = {}
+
+    if vim.bo[buf].readonly then table.insert(ret, "[RO]") end
+    if vim.bo[buf].modified then table.insert(ret, "[+]") end
+
+    if next(ret) == nil then return nil end
+    return table.concat(ret, " ")
+end
+
+local function render(items)
+    local ret = {}
+    for k, v in pairs(items) do
+        if v ~= nil then table.insert(ret, v) end
+    end
+
+    return table.concat(ret, " ")
+end
 
 local function status_line()
     local gitBranch = tools.git_branch()
     local workdir = tools.cwd_basename()
     local fileFullPath = "%<%f"
-    local modifiedFlag = " %m"
-    local readonlyFlag = " %r"
     local lineInfo = "%5l/%L %p%%"
     local cmdLine = "%S" -- show cmdline content in statusline
 
     local aligner = "%="
-    local leftSeparator = " :: "
+    local leftSeparator = "::"
 
-    return table.concat({
-        "%1* ", -- colorize all with User1
+    return render({
+        "%1*", -- colorize all with User1
         workdir,
         leftSeparator,
         gitBranch,
         leftSeparator,
         fileFullPath,
-        modifiedFlag,
-        readonlyFlag,
+        file_flags(),
         lsp_diag(),
+        git_diff_lines(),
         aligner,
         " ",
         macro,
         " ",
         cmdLine,
         lineInfo,
-        " ",
-    }, "")
+        "",
+    })
 end
 
 function M.setup()
@@ -79,10 +100,13 @@ function M.setup()
             vim.opt.statusline = status_line()
         end,
     })
-    vim.api.nvim_create_autocmd("DiagnosticChanged", {
-        group = group,
-        callback = function() vim.opt.statusline = status_line() end,
-    })
+    vim.api.nvim_create_autocmd(
+        { "DiagnosticChanged", "LspAttach", "TextChanged", "InsertLeave", "BufWritePost", "BufEnter" },
+        {
+            group = group,
+            callback = function() vim.opt.statusline = status_line() end,
+        }
+    )
 
     -- move status line from separate line to a statusline
     -- (%S in the status_line() function)
