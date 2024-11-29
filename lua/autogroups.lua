@@ -75,6 +75,7 @@ autocmd("LspAttach", {
             focus = false,
             focusable = false,
         })
+        -- todo: move to lsp.lua??
         vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
             border = "single",
             focus = false,

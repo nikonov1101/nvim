@@ -1,6 +1,8 @@
-require("local.gitc").show()
+local t = require("tools")
+print(t.dump_table(t))
+
+-- require("local.gitc").show()
 -- print(tools.dump_table(tools))
---
 -- local t = { "qwe", "rty", "foo", "bar" }
 -- print(tools.dump_table(t))
 -- print(tools.len_of(t))

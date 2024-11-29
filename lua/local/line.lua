@@ -2,6 +2,37 @@ local M = {}
 
 local tools = require("tools")
 
+local function lsp_diag()
+    local errors = 0
+    local warnings = 0
+    local infos = 0
+    local hints = 0
+
+    local dia = vim.diagnostic.get(0, {})
+    for k, v in pairs(dia) do
+        local sev = v["severity"]
+        if sev == vim.diagnostic.severity.ERROR then
+            errors = errors + 1
+        elseif sev == vim.diagnostic.severity.WARN then
+            warnings = warnings + 1
+        elseif sev == vim.diagnostic.severity.INFO then
+            infos = infos + 1
+        elseif sev == vim.diagnostic.severity.HINT then
+            hints = hints + 1
+        end
+    end
+
+    local ret = {}
+
+    -- TODO: should I colorize it?
+    if errors > 0 then table.insert(ret, "E:" .. errors) end
+    if warnings > 0 then table.insert(ret, "W:" .. warnings) end
+    if infos > 0 then table.insert(ret, "I:" .. infos) end
+    if hints > 0 then table.insert(ret, "H:" .. hints) end
+
+    return table.concat(ret, " ")
+end
+
 local macro = ""
 
 local function status_line()
@@ -25,6 +56,7 @@ local function status_line()
         fileFullPath,
         modifiedFlag,
         readonlyFlag,
+        lsp_diag(),
         aligner,
         " ",
         macro,
@@ -46,6 +78,10 @@ function M.setup()
             -- redraw status line with updated macros status
             vim.opt.statusline = status_line()
         end,
+    })
+    vim.api.nvim_create_autocmd("DiagnosticChanged", {
+        group = group,
+        callback = function() vim.opt.statusline = status_line() end,
     })
 
     -- move status line from separate line to a statusline
