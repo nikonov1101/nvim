@@ -35,6 +35,11 @@ local function repaint()
     vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.noclown_line })
     vim.api.nvim_set_hl(0, "CursorLineNr", { bg = colors.noclown_line })
     vim.api.nvim_set_hl(0, "User1", { fg = colors.medium_gray, bg = "none" })
+
+    vim.api.nvim_set_hl(0, "@comment.todo", { link = "@keyword" })
+    vim.api.nvim_set_hl(0, "@comment.warning", { fg = "#ab8550", bold = true })
+    vim.api.nvim_set_hl(0, "@comment.error", { fg = "#984936", bold = true })
+    vim.api.nvim_set_hl(0, "@comment.note", { fg = "#afafaf", bold = true })
 end
 
 return {
