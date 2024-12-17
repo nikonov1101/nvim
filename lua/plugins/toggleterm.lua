@@ -4,8 +4,6 @@ return {
     config = function()
         -- toggle hotkey
         vim.keymap.set("n", "<Leader>t", "<cmd>:ToggleTerm direction=float<cr>i", {})
-        -- C-w is for window, t is for terminal, note 'i' at the end for INSERT mode
-        vim.keymap.set("n", "<C-w>t", "<cmd>:ToggleTerm direction=float<cr>i", {})
 
         function _G.set_terminal_keymaps()
             -- keybindings inside the terminal

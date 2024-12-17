@@ -51,11 +51,21 @@ vim.keymap.set("n", "c[", "\"_ci[", with_opts())
 
 -- yank faster
 vim.keymap.set("n", "yw", "yiw", with_opts())
+vim.keymap.set("n", "yW", "yiW", with_opts())
 vim.keymap.set("n", "y{", "yi{", with_opts())
 vim.keymap.set("n", "y(", "yi(", with_opts())
 vim.keymap.set("n", "y[", "yi[", with_opts())
 vim.keymap.set("n", "y\"", "yi\"", with_opts())
 vim.keymap.set("n", "y'", "yi'", with_opts())
+
+-- visual faster
+vim.keymap.set("n", "vw", "viw", with_opts())
+vim.keymap.set("n", "vW", "viW", with_opts())
+vim.keymap.set("n", "v{", "vi{", with_opts())
+vim.keymap.set("n", "v(", "vi(", with_opts())
+vim.keymap.set("n", "v[", "vi[", with_opts())
+vim.keymap.set("n", "v\"", "vi\"", with_opts())
+vim.keymap.set("n", "v'", "vi'", with_opts())
 
 -- [[ and ]] jumps back and forth over history
 vim.keymap.set("n", "[[", ":lua vim.api.nvim_command('normal! <C-o>')<cr>", with_opts("Go backward in history"))

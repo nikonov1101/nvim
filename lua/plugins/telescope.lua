@@ -37,11 +37,11 @@ return {
             if not ok then builtin.find_files() end
         end, {})
 
-        vim.keymap.set("n", "<C-e>", builtin.buffers, { desc = "buffers" })
-
         vim.keymap.set("n", "<C-p>", builtin.live_grep, { desc = "live grep" })
 
         vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Find files" })
+
+        vim.keymap.set("n", "<leader>fe", builtin.buffers, { desc = "buffers" })
 
         vim.keymap.set("n", "<leader>fc", function()
             local word = vim.fn.expand("<cword>")
