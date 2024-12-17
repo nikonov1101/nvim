@@ -1,5 +1,7 @@
 return {
     "echasnovski/mini.move",
+    version = "*",
+    event = "VeryLazy",
     keys = function(_, keys)
         local plugin = require("lazy.core.config").spec.plugins["mini.move"]
         local opts = require("lazy.core.plugin").values(plugin, "opts", false) -- resolve mini.clue options
