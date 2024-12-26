@@ -11,6 +11,11 @@ vim.keymap.set({ "n", "v" }, "<right>", "")
 vim.keymap.set({ "n", "v" }, "<up>", "")
 vim.keymap.set({ "n", "v" }, "<down>", "")
 
+-- who even need these "jump to the top/middle/bottom of the screen" feature??
+vim.keymap.set({ "n", "v" }, "H", "B")
+vim.keymap.set({ "n", "v" }, "L", "W")
+vim.keymap.set({ "n", "v" }, "M", "E")
+
 -- better movements in insert-mode
 vim.keymap.set("i", "jj", "<Esc>", with_opts())
 vim.keymap.set("i", "OO", "<Esc>o", with_opts())
