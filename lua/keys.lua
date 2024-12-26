@@ -77,3 +77,7 @@ vim.keymap.set(
     ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-i>', true, false, true), 'n', true)<cr>",
     with_opts("Go forward in history")
 )
+-- replace visual selection with a given text,
+-- from loveoverflow <3
+-- https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
+vim.keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//g<left><left>")
