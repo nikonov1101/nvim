@@ -15,6 +15,8 @@ vim.keymap.set({ "n", "v" }, "<down>", "")
 vim.keymap.set({ "n", "v" }, "H", "B")
 vim.keymap.set({ "n", "v" }, "L", "W")
 vim.keymap.set({ "n", "v" }, "M", "E")
+-- undo the undo
+vim.keymap.set("n", "U", "<cmd>redo<cr>")
 
 -- better movements in insert-mode
 vim.keymap.set("i", "jj", "<Esc>", with_opts())
