@@ -145,6 +145,16 @@ return {
                     })
                 end,
 
+                ["clangd"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.clangd.setup({
+                        cmd = {
+                            "clangd",
+                            "--fallback-style=chromium",
+                        },
+                    })
+                end,
+
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup({

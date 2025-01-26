@@ -4,6 +4,9 @@ local with_opts = require("tools").keymap_opts
 
 vim.keymap.set("n", "<Leader>w", "<cmd>wa<cr>", with_opts("write all"))
 vim.keymap.set("n", "<Leader>q", "<cmd>qa<cr>", with_opts("exit all"))
+-- TODO: make them commands
+vim.keymap.set("n", "<Leader>R", "<cmd>bufdo e<cr>", with_opts("reload all buffers"))
+vim.keymap.set("n", "<Leader>C", "<cmd>%bd|e#|bd#<cr>", with_opts("close all buffers"))
 
 -- maybe this will help me
 vim.keymap.set({ "n", "v" }, "<left>", "")
