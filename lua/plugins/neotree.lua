@@ -5,7 +5,7 @@ vim.g.nvim_tree_show_icons = {
     folder_arrows = 0,
 }
 
-vim.keymap.set("n", "<Leader>o", "<cmd>Neotree filesystem reveal float<cr>", {})
+vim.keymap.set("n", "<Leader>O", "<cmd>Neotree filesystem reveal float<cr>", {})
 
 return {
     "nvim-neo-tree/neo-tree.nvim",
@@ -84,7 +84,7 @@ return {
             mappings = {
                 ["<Space>"] = false,
                 ["<S-CR>"] = "system_open",
-                O = "system_open",
+                ["O"] = "system_open",
                 ["<left>"] = "parent_or_close",
                 ["<right>"] = "child_or_open",
                 ["h"] = "parent_or_close",

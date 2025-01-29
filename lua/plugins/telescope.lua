@@ -32,10 +32,14 @@ return {
         require("telescope").load_extension("ui-select")
 
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<C-o>", function()
+        local find_git_files = function()
             local ok, _ = pcall(builtin.git_files)
             if not ok then builtin.find_files() end
-        end, {})
+        end
+
+        -- both ^o and leader-o does the same, fixing bad habits
+        vim.keymap.set("n", "<C-o>", find_git_files)
+        vim.keymap.set("n", "<Leader>o", find_git_files)
 
         vim.keymap.set("n", "<C-p>", builtin.live_grep, { desc = "live grep" })
 
