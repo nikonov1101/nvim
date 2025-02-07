@@ -188,8 +188,8 @@ return {
             },
             view = {
                 -- native windows are compact and minimalistic
-                entries = { name = "custom" },
-                -- entries = { name = "native" },
+                -- entries = { name = "custom" },
+                entries = { name = "native" },
             },
             snippet = {
                 expand = function(args)
