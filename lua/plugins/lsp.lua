@@ -180,13 +180,16 @@ return {
                 fields = { "abbr", "kind" },
             },
             completion = {
+                -- hide by default, show by ctrl+n
+                -- autocomplete = false,
                 -- auto-select the first option, expand by <CR>
                 -- Intellij-like behaviour.
                 completeopt = "menu,menuone,noinsert",
             },
             view = {
-                -- native vindows are compact and minimalistic
+                -- native windows are compact and minimalistic
                 entries = { name = "custom" },
+                -- entries = { name = "native" },
             },
             snippet = {
                 expand = function(args)
@@ -194,16 +197,15 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert({
+                ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-                ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
             }),
             sources = cmp.config.sources({
-                { name = "lazydev", group_index = 0 },
                 { name = "luasnip", priority = 9999, option = { show_autosnippets = true } },
                 { name = "nvim_lsp_signature_help", priority = 400 }, -- function signatures
                 { name = "nvim_lsp", priority = 300 },
-                { name = "buffer", priority = 200 },
+                -- { name = "buffer", priority = 200 },
                 { name = "path", priority = 100 },
             }),
             enable = function()

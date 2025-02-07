@@ -29,7 +29,13 @@ vim.keymap.set("i", "AA", "<Esc>A", with_opts())
 
 -- select left/right window with less keystrokes
 vim.keymap.set("n", "<C-h>", "<C-w>h", with_opts())
+vim.keymap.set("n", "<C-j>", "<C-w>j", with_opts())
+vim.keymap.set("n", "<C-k>", "<C-w>k", with_opts())
 vim.keymap.set("n", "<C-l>", "<C-w>l", with_opts())
+
+-- better half-page scrolling
+vim.keymap.set("n", "gj", "<C-d>")
+vim.keymap.set("n", "gk", "<C-u>")
 
 -- copy to a system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
