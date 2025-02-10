@@ -18,4 +18,12 @@ vim.keymap.set("n", "<Leader>pp", function()
     vim.cmd("edit +4 " .. p)
 end, tools.keymap_opts("goto last Go playground"))
 
-vim.keymap.set("n", "<Leader>pt", function() vim.cmd("edit ~/focus") end, tools.keymap_opts("open global TODO file"))
+-- semantic: "t" for Todo
+vim.keymap.set("n", "<Leader>pt", function() vim.cmd("tabe ~/focus") end, tools.keymap_opts("open global TODO file"))
+-- semantic: "s" for Scratch
+vim.keymap.set(
+    "n",
+    "<Leader>ps",
+    function() vim.cmd("tabe | setlocal buftype=nofile noswapfile bufhidden=delete") end,
+    tools.keymap_opts("new scratch file")
+)

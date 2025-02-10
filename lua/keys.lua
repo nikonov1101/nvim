@@ -14,10 +14,6 @@ vim.keymap.set({ "n", "v" }, "<right>", "")
 vim.keymap.set({ "n", "v" }, "<up>", "")
 vim.keymap.set({ "n", "v" }, "<down>", "")
 
--- who even need these "jump to the top/middle/bottom of the screen" feature??
-vim.keymap.set({ "n", "v" }, "H", "B")
-vim.keymap.set({ "n", "v" }, "L", "W")
-vim.keymap.set({ "n", "v" }, "M", "E")
 -- undo the undo
 vim.keymap.set("n", "U", "<cmd>redo<cr>")
 
@@ -34,8 +30,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", with_opts())
 vim.keymap.set("n", "<C-l>", "<C-w>l", with_opts())
 
 -- better half-page scrolling
-vim.keymap.set("n", "gj", "<C-d>")
-vim.keymap.set("n", "gk", "<C-u>")
+vim.keymap.set("n", "gj", "<C-d>zz")
+vim.keymap.set("n", "gk", "<C-u>zz")
 
 -- copy to a system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
