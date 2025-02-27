@@ -25,6 +25,7 @@ return {
                 },
             },
         },
+        "HallerPatrick/py_lsp.nvim",
     },
 
     config = function()
@@ -46,6 +47,7 @@ return {
                 "lua_ls",
                 "gopls",
                 "clangd",
+                "ruff",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -167,6 +169,35 @@ return {
                                 },
                             },
                         },
+                    })
+                end,
+
+                ["ruff"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ruff.setup({
+                        capabilities = capabilities,
+                        init_options = {
+                            settings = {
+                                lint = {
+                                    enable = true,
+                                    preview = true,
+                                },
+                                fixAll = true,
+                                organizeImports = true,
+                                showSyntaxErrors = true,
+                            },
+                        },
+                    })
+                end,
+
+                ["py_lsp"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.py_lsp.setup({
+                        language_server = "ruff",
+                        capabilities = capabilities,
+                        -- This is optional, but allows to create virtual envs from nvim
+                        host_python = "/usr/bin/python3",
+                        default_venv_name = "venv", -- For local venv
                     })
                 end,
             },
