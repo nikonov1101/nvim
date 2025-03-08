@@ -16,6 +16,17 @@ ls.add_snippets("all", {
     }),
 })
 
+ls.add_snippets("nasm", {
+    s("tod", {
+        t(";;; TODO: "),
+        i(0),
+    }),
+    s("xxx", {
+        t(";;;  XXX: "),
+        i(0),
+    }),
+})
+
 ls.add_snippets("go", {
     s("pf", {
         t("log.Printf(\""),
