@@ -21,13 +21,20 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", with_opts())
 vim.keymap.set("n", "<C-k>", "<C-w>k", with_opts())
 vim.keymap.set("n", "<C-l>", "<C-w>l", with_opts())
 
+-- normal, visual, operator-pending modes
+local visuall = { "n", "x", "o" }
+
 -- better half-page scrolling
-vim.keymap.set("n", "gj", "<C-d>zz")
-vim.keymap.set("n", "gk", "<C-u>zz")
+vim.keymap.set(visuall, "gj", "<C-d>zz")
+vim.keymap.set(visuall, "gk", "<C-u>zz")
+-- s for start, e for end
+vim.keymap.set(visuall, "gs", "^")
+vim.keymap.set(visuall, "ge", "$")
+vim.keymap.set(visuall, "gI", "`.") -- goto previous change, also "g;"
 
 -- copy to a system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
+vim.keymap.set(visuall, "<leader>y", [["+y]])
+vim.keymap.set(visuall, "<leader>Y", [["+Y]])
 
 -- jump half-page up/down centers the cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
