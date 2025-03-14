@@ -28,6 +28,11 @@ ls.add_snippets("nasm", {
 })
 
 ls.add_snippets("go", {
+    s("go", {
+        t({ "go func(){", "" }),
+        i(0),
+        t({ "", "}()" }),
+    }),
     s("pf", {
         t("log.Printf(\""),
         i(0),
