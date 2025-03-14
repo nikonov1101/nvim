@@ -47,12 +47,11 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- ALWAYS change and delete into blackhole register
 vim.keymap.set("n", "c", "\"_c", with_opts())
-vim.keymap.set("n", "dw", "\"_diw", with_opts())
+vim.keymap.set("n", "dw", "\"_daw", with_opts())
 vim.keymap.set("n", "dW", "\"_diW", with_opts())
 
 -- change into a blackhole register
-vim.keymap.set("n", "C", "\"_ciw", with_opts())
-vim.keymap.set("n", "cc", "\"_c$", with_opts())
+vim.keymap.set("n", "C", "\"_c$", with_opts())
 vim.keymap.set("n", "cw", "\"_ciw", with_opts())
 vim.keymap.set("n", "cW", "\"_ciW", with_opts())
 vim.keymap.set("n", "c\"", "\"_ci\"", with_opts())
