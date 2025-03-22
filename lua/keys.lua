@@ -28,7 +28,7 @@ local visuall = { "n", "x", "o" }
 vim.keymap.set(visuall, "gj", "<C-d>zz")
 vim.keymap.set(visuall, "gk", "<C-u>zz")
 -- s for start, e for end
-vim.keymap.set(visuall, "gs", "^")
+vim.keymap.set(visuall, "gs", "^ze")
 vim.keymap.set(visuall, "ge", "$")
 vim.keymap.set(visuall, "gI", "`.") -- goto previous change, also "g;"
 
