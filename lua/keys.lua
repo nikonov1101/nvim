@@ -16,10 +16,10 @@ vim.keymap.set({ "n", "v" }, "<down>", "")
 vim.keymap.set("n", "U", "<cmd>redo<cr>")
 
 -- select left/right window with less keystrokes
-vim.keymap.set("n", "<C-h>", "<C-w>h", with_opts())
-vim.keymap.set("n", "<C-j>", "<C-w>j", with_opts())
-vim.keymap.set("n", "<C-k>", "<C-w>k", with_opts())
-vim.keymap.set("n", "<C-l>", "<C-w>l", with_opts())
+vim.keymap.set("n", "<M-h>", "<C-w>h", with_opts())
+vim.keymap.set("n", "<M-j>", "<C-w>j", with_opts())
+vim.keymap.set("n", "<M-k>", "<C-w>k", with_opts())
+vim.keymap.set("n", "<M-l>", "<C-w>l", with_opts())
 
 -- normal, visual, operator-pending modes
 local visuall = { "n", "x", "o" }
