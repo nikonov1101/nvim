@@ -134,12 +134,6 @@ return {
                                     unusedwrite = true,
                                     useany = true,
                                 },
-                                annotations = {
-                                    bounds = true,
-                                    escape = true,
-                                    inline = true,
-                                    -- 'nil' = true,
-                                },
                             },
                         },
                     })

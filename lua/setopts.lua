@@ -13,6 +13,7 @@ vim.opt.wrap = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.mouse = ""
+vim.opt.winborder = "single"
 
 -- Searching
 vim.opt.incsearch = true -- search as characters are entered
