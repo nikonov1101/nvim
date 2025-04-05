@@ -13,7 +13,8 @@ vim.opt.wrap = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.mouse = ""
-vim.opt.winborder = "single"
+vim.opt.completeopt = "menu,menuone,preview,fuzzy,noselect"
+vim.opt.shortmess = "ltToOCFsc"
 
 -- Searching
 vim.opt.incsearch = true -- search as characters are entered

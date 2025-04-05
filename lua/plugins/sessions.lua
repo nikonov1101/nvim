@@ -1,4 +1,4 @@
-vim.o.sessionoptions = "blank,curdir,folds,help,tabpages,winsize,winpos,localoptions,options"
+vim.o.sessionoptions = "blank,curdir,folds,tabpages,winsize,winpos"
 
 return {
     "rmagatti/auto-session",
@@ -8,5 +8,7 @@ return {
         { "<leader><leader>s", "<cmd>Autosession delete<CR>", desc = "delete session" },
     },
 
-    opts = {},
+    opts = {
+        suppressed_dirs = { "/", "/etc", "~/", "~/Projects", "~/Downloads" },
+    },
 }

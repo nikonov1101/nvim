@@ -174,11 +174,9 @@ return {
                 fields = { "abbr", "kind" },
             },
             completion = {
-                -- hide by default, show by ctrl+n
-                -- autocomplete = false,
                 -- auto-select the first option, expand by <CR>
                 -- Intellij-like behaviour.
-                completeopt = "menu,menuone,noinsert",
+                completeopt = "menu,menuone,noinsert,fuzzy",
             },
             view = {
                 -- native windows are compact and minimalistic
