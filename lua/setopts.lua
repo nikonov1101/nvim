@@ -13,7 +13,7 @@ vim.opt.wrap = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.mouse = ""
-vim.opt.completeopt = "menu,menuone,preview,fuzzy,noselect"
+vim.opt.completeopt = "menu,preview,fuzzy"
 vim.opt.shortmess = "ltToOCFsc"
 
 -- Searching

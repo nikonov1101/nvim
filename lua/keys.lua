@@ -11,6 +11,10 @@ vim.keymap.set({ "n", "v" }, "<left>", "")
 vim.keymap.set({ "n", "v" }, "<right>", "")
 vim.keymap.set({ "n", "v" }, "<up>", "")
 vim.keymap.set({ "n", "v" }, "<down>", "")
+-- ahhhhh fuck
+vim.keymap.set({ "n", "i", "v", "x", "o" }, "<f1>", "")
+vim.keymap.set({ "n", "i", "v", "x", "o" }, "<PageUp>", "")
+vim.keymap.set({ "n", "i", "v", "x", "o" }, "<PageDown>", "")
 
 -- undo the undo
 vim.keymap.set("n", "U", "<cmd>redo<cr>")
