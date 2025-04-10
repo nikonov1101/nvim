@@ -176,7 +176,7 @@ return {
             completion = {
                 -- auto-select the first option, expand by <CR>
                 -- Intellij-like behaviour.
-                completeopt = "menu,noinsert,fuzzy",
+                completeopt = "menu,menuone,noinsert,fuzzy",
             },
             view = {
                 -- native windows are compact and minimalistic
