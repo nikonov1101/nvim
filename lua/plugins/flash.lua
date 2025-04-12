@@ -8,7 +8,7 @@ return {
         },
         jump = {
             -- save location in the jumplist
-            jumplist = false,
+            jumplist = true,
             -- automatically jump when there is only one match
             autojump = true,
         },

@@ -56,6 +56,7 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
         vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
         vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<cr>", opts)
+        vim.keymap.set("n", "grf", "33[{^/\\s[a-z]<return>w", opts) -- current function definition
         vim.keymap.set("n", "grn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("n", "gra", function() vim.lsp.buf.code_action() end, opts)
         vim.keymap.set("n", "grI", "<cmd>Telescope lsp_incoming_calls<cr>", opts)
