@@ -13,7 +13,7 @@ return {
             defaults = {
                 sorting_strategy = "ascending",
                 results_title = false,
-                layout_strategy = "horizontal",
+                layout_strategy = "vertical",
                 anchor = "CENTER",
                 layout_config = {
                     prompt_position = "top",

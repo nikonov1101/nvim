@@ -31,10 +31,12 @@ local visuall = { "n", "x", "o" }
 -- better half-page scrolling
 vim.keymap.set(visuall, "gj", "<C-d>zz")
 vim.keymap.set(visuall, "gk", "<C-u>zz")
--- s for start, e for end
-vim.keymap.set(visuall, "gs", "^ze")
+-- a for start, e for end, same as for shell navigation
+vim.keymap.set(visuall, "ga", "^ze")
 vim.keymap.set(visuall, "ge", "$")
-vim.keymap.set(visuall, "gI", "`.") -- goto previous change, also "g;"
+vim.keymap.set(visuall, "gI", function() print("use g; instead") end) -- goto previous change, also "g;"
+-- semantic - Go Bracket
+vim.keymap.set(visuall, "gb", "%")
 
 -- copy to a system clipboard
 vim.keymap.set(visuall, "<leader>y", [["+y]])
