@@ -28,6 +28,11 @@ local function repaint()
     vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "#121212" })
     vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "#121212" })
 
+    vim.api.nvim_set_hl(0, "SpellBad", { bg = "#680d0f" })
+    vim.api.nvim_set_hl(0, "SpellCap", { bg = "#680d0f" })
+    vim.api.nvim_set_hl(0, "SpellRare", { bg = "#680d0f" })
+    vim.api.nvim_set_hl(0, "SpellLocal", { bg = "#680d0f" })
+
     -- make Flash jump label more distinguishable
     vim.api.nvim_set_hl(0, "FlashLabel", { bold = true, bg = "#0000aa" })
 

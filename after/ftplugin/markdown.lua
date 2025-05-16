@@ -1,5 +1,9 @@
 vim.opt_local.textwidth = 80
 vim.opt_local.colorcolumn = "+1"
+vim.opt_local.spell = true
+vim.opt_local.spelllang = "en"
+vim.opt_local.spellcapcheck = ""
+vim.opt_local.spelloptions = "camel,noplainbuffer"
 
 local function keycode(name) return vim.api.nvim_replace_termcodes(name, true, true, true) end
 local esc = keycode("<esc>") -- ]^
