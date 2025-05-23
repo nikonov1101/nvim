@@ -59,8 +59,6 @@ local function render(items)
 end
 
 local function status_line()
-    local gitBranch = tools.git_branch()
-    local workdir = tools.cwd_basename()
     local fileFullPath = "%<%f"
     local lineInfo = "%5l/%L %p%%"
     local cmdLine = "%S" -- show cmdline content in statusline
@@ -70,11 +68,8 @@ local function status_line()
 
     return render({
         "%1*", -- colorize all with User1
-        workdir,
-        leftSeparator,
-        gitBranch,
-        leftSeparator,
         fileFullPath,
+        "", -- a little more gap
         file_flags(),
         lsp_diag(),
         git_diff_lines(),
