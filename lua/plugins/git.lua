@@ -34,14 +34,8 @@ return {
                         end
                     end)
 
-                    -- view with telescope, V for VCS
-                    local tele = require("telescope.builtin")
-                    map("n", "<leader>vL", tele.git_bcommits, { desc = "git log (buffer)" })
-                    map("n", "<leader>vl", tele.git_commits, { desc = "git log (all)" })
-                    map("n", "<leader>vb", tele.git_branches, { desc = "git branches" })
-                    map("n", "<leader>vs", "<cmd>Neotree float git_status<cr>", { desc = "git status" })
-
                     -- Actions
+                    map({ "n", "v" }, "<leader>gg", "<cmd>Gitsigns<cr>", { desc = "gitsigns pop-up" })
                     map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "stage hunk" })
                     map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "reset hunk" })
                     map(
@@ -56,12 +50,6 @@ return {
                         function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
                         { desc = "reset hunk" }
                     )
-                    map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "stage buffer" })
-                    map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "reset buffer" })
-                    map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "preview hunk" })
-
-                    -- Text object
-                    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
                 end,
             })
         end,
@@ -69,14 +57,12 @@ return {
     {
         "sindrets/diffview.nvim",
         config = function()
-            vim.keymap.set("n", "<leader>GG", "<cmd>:DiffviewOpen -uno<cr>")
-            vim.keymap.set("n", "<leader>GU", "<cmd>:DiffviewOpen<cr>")
-            vim.keymap.set("n", "<leader>GC", "<cmd>:DiffviewClose<cr>")
-            vim.keymap.set("n", "<leader>GF", "<cmd>:DiffviewFileHistory %<cr>")
-            vim.keymap.set("n", "<leader>GK", function() require("local.commit").show() end)
+            vim.keymap.set("n", "<leader><leader>g", "<cmd>:DiffviewOpen -uno<cr>")
+            vim.keymap.set("n", "<leader><leader>u", "<cmd>:DiffviewOpen<cr>")
+            vim.keymap.set("n", "<leader><leader>c", "<cmd>:DiffviewClose<cr>")
+            vim.keymap.set("n", "<leader><leader>h", "<cmd>:DiffviewFileHistory %<cr>")
+            vim.keymap.set("n", "<leader><leader>k", function() require("local.commit").show() end)
 
-            local actions = require("diffview.actions")
-            -- https://github.com/sindrets/diffview.nvim?tab=readme-ov-file#configuration
             require("diffview").setup({
                 use_icons = false,
                 file_panel = {
