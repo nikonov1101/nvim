@@ -48,70 +48,24 @@ local function repaint()
 end
 
 return {
-    {
-        -- the default one
-        "xiantang/darcula-dark.nvim",
-        config = function()
-            -- vim.cmd.colorscheme("darcula-dark")
-        end,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-    },
-    {
-        -- nice set of themes, give it a try
-        "EdenEast/nightfox.nvim",
-        config = function()
-            require("nightfox").setup({
-                options = {
-                    styles = {
-                        comments = "italic",
-                        keywords = "bold",
-                        types = "italic,bold",
-                    },
-                },
-            })
-            -- or duskfox?
-            -- vim.cmd.colorscheme("nightfox")
-        end,
-    },
-    {
-        "aktersnurra/no-clown-fiesta.nvim",
-        priority = 999,
-        lazy = false,
-        config = function()
-            local plugin = require("no-clown-fiesta")
-            plugin.setup({
-                styles = {
-                    keywords = { bold = true },
-                    type = { bold = true },
-                    lsp = { underline = false },
-                    match_paren = { underline = true },
-                    comments = {},
-                    functions = {},
-                    variables = {},
-                },
-            })
-            plugin.load()
-            vim.cmd.colorscheme("no-clown-fiesta")
-            repaint()
-        end,
-    },
-    {
-        "savq/melange-nvim",
-        config = function()
-            -- vim.cmd.colorscheme("melange")
-        end,
-    },
-    {
-        "sainnhe/everforest",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            -- Optionally configure and load the colorscheme
-            -- directly inside the plugin declaration.
-            vim.g.everforest_enable_italic = true
-            -- vim.cmd.colorscheme('everforest')
-        end,
-    },
+    "aktersnurra/no-clown-fiesta.nvim",
+    priority = 999,
+    lazy = false,
+    config = function()
+        local plugin = require("no-clown-fiesta")
+        plugin.setup({
+            styles = {
+                keywords = { bold = true },
+                type = { bold = true },
+                lsp = { underline = false },
+                match_paren = { underline = true },
+                comments = {},
+                functions = {},
+                variables = {},
+            },
+        })
+        plugin.load()
+        vim.cmd.colorscheme("no-clown-fiesta")
+        repaint()
+    end,
 }

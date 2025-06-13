@@ -38,18 +38,6 @@ return {
                     map({ "n", "v" }, "<leader>gg", "<cmd>Gitsigns<cr>", { desc = "gitsigns pop-up" })
                     map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "stage hunk" })
                     map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "reset hunk" })
-                    map(
-                        "v",
-                        "<leader>gs",
-                        function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
-                        { desc = "stage hunk" }
-                    )
-                    map(
-                        "v",
-                        "<leader>gr",
-                        function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
-                        { desc = "reset hunk" }
-                    )
                 end,
             })
         end,
@@ -61,7 +49,6 @@ return {
             vim.keymap.set("n", "<leader><leader>u", "<cmd>:DiffviewOpen<cr>")
             vim.keymap.set("n", "<leader><leader>c", "<cmd>:DiffviewClose<cr>")
             vim.keymap.set("n", "<leader><leader>h", "<cmd>:DiffviewFileHistory %<cr>")
-            vim.keymap.set("n", "<leader><leader>k", function() require("local.commit").show() end)
 
             require("diffview").setup({
                 use_icons = false,

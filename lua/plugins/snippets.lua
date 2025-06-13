@@ -60,28 +60,28 @@ ls.add_snippets("go", {
         i(0, "// test"),
         t({ "", "}", "" }),
     }),
-    postfix({
-        -- if err := call(); err != nil { ... }
-        trig = ".e",
-        match_pattern = "^(.*)$",
-        snippetType = "autosnippet",
-    }, {
-        l("if err := " .. l.POSTFIX_MATCH .. "; err != nil{"),
-        t({ "", "" }),
-        i(0),
-        t({ "", "}" }),
-    }),
-    postfix({
-        -- if _, err := call(); err != nil { ... }
-        trig = ".ee",
-        match_pattern = "^(.*)$",
-        snippetType = "autosnippet",
-    }, {
-        l("if _, err := " .. l.POSTFIX_MATCH .. "; err != nil{"),
-        t({ "", "" }),
-        i(0),
-        t({ "", "}" }),
-    }),
+    -- postfix({
+    --     -- if err := call(); err != nil { ... }
+    --     trig = ".e",
+    --     match_pattern = "^(.*)$",
+    --     snippetType = "autosnippet",
+    -- }, {
+    --     l("if err := " .. l.POSTFIX_MATCH .. "; err != nil{"),
+    --     t({ "", "" }),
+    --     i(0),
+    --     t({ "", "}" }),
+    -- }),
+    -- postfix({
+    --     -- if _, err := call(); err != nil { ... }
+    --     trig = ".ee",
+    --     match_pattern = "^(.*)$",
+    --     snippetType = "autosnippet",
+    -- }, {
+    --     l("if _, err := " .. l.POSTFIX_MATCH .. "; err != nil{"),
+    --     t({ "", "" }),
+    --     i(0),
+    --     t({ "", "}" }),
+    -- }),
 })
 
 return {
