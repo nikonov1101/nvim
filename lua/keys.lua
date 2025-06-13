@@ -1,46 +1,39 @@
 vim.g.mapleader = " "
 
 local with_opts = require("tools").keymap_opts
+-- normal, visual, operator-pending modes
+local vis = { "n", "x", "o" }
+local all = { "n", "i", "v", "x", "o" }
 
-vim.keymap.set("n", "<Leader>w", "<cmd>wa<cr>", with_opts("write all"))
+-- picking good habits faster --
+vim.keymap.set(vis, "<left>", "")
+vim.keymap.set(vis, "<right>", "")
+vim.keymap.set(vis, "<up>", "")
+vim.keymap.set(vis, "<down>", "")
+vim.keymap.set(all, "<f1>", "")
+vim.keymap.set(all, "<PageUp>", "")
+vim.keymap.set(all, "<PageDown>", "")
+
+-- copy to a system clipboard
+vim.keymap.set(vis, "<leader>y", [["+y]])
+--
+-- double leader as a safety measure
+--
 vim.keymap.set("n", "<Leader><leader>r", "<cmd>bufdo e<cr>", with_opts("reload all buffers"))
 vim.keymap.set("n", "<Leader><leader>x", "<cmd>%bd|e#|bd#<cr>", with_opts("close all buffers"))
-
--- maybe this will help me
-vim.keymap.set({ "n", "v" }, "<left>", "")
-vim.keymap.set({ "n", "v" }, "<right>", "")
-vim.keymap.set({ "n", "v" }, "<up>", "")
-vim.keymap.set({ "n", "v" }, "<down>", "")
--- ahhhhh fuck
-vim.keymap.set({ "n", "i", "v", "x", "o" }, "<f1>", "")
-vim.keymap.set({ "n", "i", "v", "x", "o" }, "<PageUp>", "")
-vim.keymap.set({ "n", "i", "v", "x", "o" }, "<PageDown>", "")
+-- copy the whole line into the system clipboard
+vim.keymap.set("n", "<Leader><leader>y", [["+Y]], with_opts("close all buffers"))
 
 -- undo the undo
 vim.keymap.set("n", "U", "<cmd>redo<cr>")
 
--- select left/right window with less keystrokes
-vim.keymap.set("n", "<M-h>", "<C-w>h", with_opts())
-vim.keymap.set("n", "<M-j>", "<C-w>j", with_opts())
-vim.keymap.set("n", "<M-k>", "<C-w>k", with_opts())
-vim.keymap.set("n", "<M-l>", "<C-w>l", with_opts())
-
--- normal, visual, operator-pending modes
-local visuall = { "n", "x", "o" }
-
--- better half-page scrolling
-vim.keymap.set(visuall, "gj", "<C-d>zz")
-vim.keymap.set(visuall, "gk", "<C-u>zz")
 -- a for start, e for end, same as for shell navigation
-vim.keymap.set(visuall, "ga", "^ze")
-vim.keymap.set(visuall, "ge", "$")
-vim.keymap.set(visuall, "gI", function() print("use g; instead") end) -- goto previous change, also "g;"
+vim.keymap.set(vis, "ga", "^ze")
+vim.keymap.set(vis, "ge", "$")
 -- semantic - Go Bracket
-vim.keymap.set(visuall, "gb", "%")
-
--- copy to a system clipboard
-vim.keymap.set(visuall, "<leader>y", [["+y]])
-vim.keymap.set(visuall, "<leader>Y", [["+Y]])
+vim.keymap.set(vis, "gb", "%")
+-- semantic - Go Matching
+vim.keymap.set(vis, "gm", "*")
 
 -- jump half-page up/down centers the cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -83,16 +76,6 @@ vim.keymap.set("n", "v[", "vi[", with_opts())
 vim.keymap.set("n", "v\"", "vi\"", with_opts())
 vim.keymap.set("n", "v'", "vi'", with_opts())
 
--- [[ and ]] jumps back and forth over history
-vim.keymap.set("n", "[[", ":lua vim.api.nvim_command('normal! <C-o>')<cr>", with_opts("Go backward in history"))
-vim.keymap.set(
-    "n",
-    "]]",
-    -- lua interprets C-i in a weird way, so the line below remaps it.
-    -- thanks, chatGPT
-    ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-i>', true, false, true), 'n', true)<cr>",
-    with_opts("Go forward in history")
-)
 -- replace visual selection with a given text,
 -- from loveoverflow <3
 -- https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text

@@ -1,6 +1,7 @@
 vim.o.sessionoptions = "blank,curdir,folds,tabpages,winsize,winpos"
 
 return {
+    enabled = false,
     "rmagatti/auto-session",
     lazy = false,
 
