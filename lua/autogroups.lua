@@ -22,7 +22,7 @@ autocmd("BufWritePre", {
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
-autocmd("bufwritepre", {
+autocmd("BufWritePre", {
     group = the_autoformat_group,
     pattern = "*.go",
     callback = function()
@@ -42,36 +42,37 @@ autocmd("bufwritepre", {
         vim.lsp.buf.format({ async = false })
     end,
 })
-autocmd("bufwritepre", {
-    group = the_autoformat_group,
-    pattern = "*.lua",
-    callback = function() require("stylua-nvim").format_file() end,
-})
+
+-- autocmd("BufWritePre", {
+--     group = the_autoformat_group,
+--     pattern = "*.lua",
+--     -- callback = function() require("stylua-nvim").format_file() end,
+-- })
 
 autocmd("LspAttach", {
     group = the_autoformat_group,
     callback = function(e)
-        local tele = require("telescope.builtin")
-        local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
-        vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
-        vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<cr>", opts)
-        vim.keymap.set("n", "grf", "33[{^/\\s[a-z]<return>w", opts) -- current function definition
-        vim.keymap.set("n", "grn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("n", "gra", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "grI", "<cmd>Telescope lsp_incoming_calls<cr>", opts)
-        vim.keymap.set("n", "grO", "<cmd>Telescope lsp_outgoing_calls<cr>", opts)
-        vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
-
-        vim.keymap.set("n", "<leader>ls", function() tele.lsp_document_symbols() end, opts)
-        vim.keymap.set("n", "<leader>ld", function() tele.diagnostics() end, opts)
-        vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, opts)
-        vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>lg", function() vim.lsp.buf.signature_help() end, opts)
-
         vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1 }) end, opts)
         vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1 }) end, opts)
+
+        -- local tele = require("telescope.builtin")
+        -- local opts = { buffer = e.buf }
+        -- vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+        -- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+        -- vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<cr>", opts)
+        -- vim.keymap.set("n", "grf", "33[{^/\\s[a-z]<return>w", opts) -- current function definition
+        -- vim.keymap.set("n", "grn", function() vim.lsp.buf.rename() end, opts)
+        -- vim.keymap.set("n", "gra", function() vim.lsp.buf.code_action() end, opts)
+        -- vim.keymap.set("n", "grI", "<cmd>Telescope lsp_incoming_calls<cr>", opts)
+        -- vim.keymap.set("n", "grO", "<cmd>Telescope lsp_outgoing_calls<cr>", opts)
+        -- vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
+
+        -- vim.keymap.set("n", "<leader>ls", function() tele.lsp_document_symbols() end, opts)
+        -- vim.keymap.set("n", "<leader>ld", function() tele.diagnostics() end, opts)
+        -- vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
+        -- vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, opts)
+        -- vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts)
+        -- vim.keymap.set("n", "<leader>lg", function() vim.lsp.buf.signature_help() end, opts)
 
         -- vim.lsp.handlers["textDocument/references"] = function(_, _, _) tele.lsp_references() end
         -- vim.lsp.handlers["textDocument/implementation"] = function(_, _, _) tele.lsp_implementations() end

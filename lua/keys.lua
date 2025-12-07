@@ -22,7 +22,7 @@ vim.keymap.set(vis, "<leader>y", [["+y]])
 vim.keymap.set("n", "<Leader><leader>r", "<cmd>bufdo e<cr>", with_opts("reload all buffers"))
 vim.keymap.set("n", "<Leader><leader>x", "<cmd>%bd|e#|bd#<cr>", with_opts("close all buffers"))
 -- copy the whole line into the system clipboard
-vim.keymap.set("n", "<Leader><leader>y", [["+Y]], with_opts("close all buffers"))
+vim.keymap.set("n", "<Leader><leader>y", [["+Y]], with_opts("copy lint into system clipboard"))
 
 -- undo the undo
 vim.keymap.set("n", "U", "<cmd>redo<cr>")

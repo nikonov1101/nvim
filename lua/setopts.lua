@@ -15,6 +15,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = ""
 vim.opt.completeopt = "menu,menuone,preview,fuzzy"
 vim.opt.shortmess = "ltToOCFsc"
+vim.o.signcolumn = "yes"
 
 -- Searching
 vim.opt.incsearch = true -- search as characters are entered
