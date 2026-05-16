@@ -22,7 +22,7 @@ vim.keymap.set(vis, "<leader>y", [["+y]])
 vim.keymap.set("n", "<Leader><leader>r", "<cmd>bufdo e<cr>", with_opts("reload all buffers"))
 vim.keymap.set("n", "<Leader><leader>x", "<cmd>%bd|e#|bd#<cr>", with_opts("close all buffers"))
 -- copy the whole line into the system clipboard
-vim.keymap.set("n", "<Leader><leader>y", [["+Y]], with_opts("copy lint into system clipboard"))
+vim.keymap.set("n", "<Leader><leader>y", [["+Y]], with_opts("copy line into system clipboard"))
 
 -- undo the undo
 vim.keymap.set("n", "U", "<cmd>redo<cr>")
@@ -80,3 +80,6 @@ vim.keymap.set("n", "v'", "vi'", with_opts())
 -- from loveoverflow <3
 -- https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
 vim.keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//g<left><left>")
+
+-- plugins
+vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>" )
